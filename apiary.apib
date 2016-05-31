@@ -14,7 +14,7 @@ api采用restful规范架构，使用oauth2授权协议。具体说明可查询�
 - **GET** `/users` 或 `/user/index` 获取用户列表
 - **GET** `/users/123` 或 `/user/view?id=123` 获取用户id为123的用户
 - **POST** `/users` 或 `/user/create` 创建一个用户
-- **PUT** `/users/123` 或 `user/update?id=123` 更新一个用户
+- **PATCH** `/users/123` 或 `user/update?id=123` 更新一个用户
 - **DELETE** `/users/123` 或 `user/delete?id=123` 删除一个用户
 
 除上述常用命令外，还有
@@ -147,9 +147,131 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         
 # 用户 [/users]
 
-## 获取用户自身信息 [GET /users/{id}]
++ Attributes
+    + id:1 (number) -用户id
+    + phone:18612345678 (number) -用户手机
+    + username:昵称 (string) -用户昵称
+    + portrait:`/pic/h2ba9205na9g7205nn30z.jpg` (string) -用户头像uri
+    + sex:1 (number) -用户性别(0:男性;1:女性)
+    + birthday:`1998-10-17` (string) -用户生日
+    + email:28576920@qq.com (string) -用户邮箱
+    + status:10 (number) -用户状态
+    + created_at (number) -用户注册时间
+    + updated_at (number) -用户信息最后更新时间
+        
+
+
+## 获取用户自身信息 [GET /user/self]
 
 + Response 200 (application/json)
+    {
+      "id": 3,
+      "username": null,
+      "portrait": null,
+      "sex": null,
+      "birthday": null,
+      "phone": "18612345678",
+      "email": "",
+      "status": 10,
+      "created_at": 1464059772,
+      "updated_at": 1464070760
+    }
+
+## 获取一名用户信息 [GET /users/{id}]
+
+无法获取用户的私人信息
+
++ Parameters
+
+    + id:1 (number) - 用户id.
+    
++ Attributes
+    + id:1 (number) -用户id
+    + username:昵称 (string) -用户昵称
+    + portrait:`/pic/h2ba9205na9g7205nn30z.jpg` (string) -用户头像uri
+    + sex:1 (number) -用户性别(0:男性;1:女性)
+    + birthday:`1998-10-17` (string) -用户生日
+    + status:10 (number) -用户状态
+    
++ Response 200 (application/json)
+    {
+      "id": 3,
+      "username": null,
+      "portrait": null,
+      "sex": null,
+      "birthday": null,
+      "status": 10,
+    }
+    
+## 更新一名用户信息 [PATCH /users/{id}]
+
++ Parameters
+
+    + id:3 (number) - 用户id.
+    
++ Attributes
+
+    + username:昵称 (string) -用户昵称
+    + phone:18612345678 (number) -用户手机
+    + email:28576920@qq.com (string) -用户邮箱
+    + portrait:`/pic/h2ba9205na9g7205nn30z.jpg` (string) -用户头像uri
+    + sex:1 (number) -用户性别(0:男性;1:女性)
+    + birthday:`1998-10-17` (string) -用户生日
+    + status:10 (number) -用户状态
+
++ Request (application/json)
+    {
+      "username": "昵称",
+      "sex": 1,
+      "birthday": "2002-10-01",
+    }
+    
++ Response 200 (application/json)
+
+    更新成功，返回更新后信息
+    
+    + Body
+
+    {
+      "id": 3,
+      "username": 昵称,
+      "portrait": null,
+      "sex": 1,
+      "birthday": "2002-10-01",
+      "phone": "18612345678",
+      "email": "",
+      "status": 10,
+      "created_at": 1464059772,
+      "updated_at": 1464070760
+    }
+    
++ Response 403 (application/json)
+
+    没有更改该用户信息的权限(非本人)
+    
+    + Body
+    
+        {
+          "name": "Forbidden",
+          "message": "没有权限修改该用户资料",
+          "code": 0,
+          "status": 403,
+          "type": "yii\\web\\ForbiddenHttpException"
+        }
+
++ Response 422 (application/json)
+        
+    更改的内容不符合规则
+    
+    + Body
+    
+            [
+                {
+                    "field": "sex",
+                    "message": "Sex是无效的。"
+                }
+            ]
+    
 
 # Group 开放api
 
