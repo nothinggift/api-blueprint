@@ -115,13 +115,14 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     用户的手机号与验证码未通过验证
     
     + Body
-        {
-            "name": "Unauthorized",
-            "message": "Invalid username and password combination",
-            "code": 0,
-            "status": 401,
-            "type": "filsh\\yii2\\oauth2server\\exceptions\\HttpException"
-        }
+    
+            {
+                "name": "Unauthorized",
+                "message": "Invalid username and password combination",
+                "code": 0,
+                "status": 401,
+                "type": "filsh\\yii2\\oauth2server\\exceptions\\HttpException"
+            }
 
 
 ### 获取新的授权码 [POST /oauth2/token]
@@ -148,18 +149,24 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 ## 获取用户自身信息 [GET /users/{id}]
 
++ Response 200 (application/json)
 
 # Group 开放api
 
 ## 地区 [/v1/region]
 
-### 获取所有地区数据 [GET v1/region/all{?type}]
++ Model(application/json)
+    {
+      "id": 44,
+      "name": "石家庄市",
+      "full_name": "河北省 石家庄市",
+      "pinyin": "ShiJiaZhuangShi",
+      "acronym": "sjzs",
+      "parent_id": 43,
+      "code": "130100"
+    }
 
-+ Parameters
-
-    + type: tree (string) - 地区数组结构，可选值有 tree,list.
-
-+ Attributes (object)
++ Attributes
     + id:5 (number) -地区id
     + name:崇文区 (string) -地区名称
     + full_name:北京市 崇文区 (string) -地区全称
@@ -167,3 +174,165 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + acronym:cwq (string) -地区首拼
     + parent_id:1 (number) -父地区id
     + code:110103 (number) -地区标识
+    + children (array,optional) -子地区数组,如没有子地区则没有该属性
+        + 
+            + id:5 (number) -地区id
+            + name:崇文区 (string) -地区名称
+            + full_name:北京市 崇文区 (string) -地区全称
+            + pinyin:ChongWenQu (string) -地区拼音
+            + acronym:cwq (string) -地区首拼
+            + parent_id:1 (number) -父地区id
+            + code:110103 (number) -地区标识
+        + 
+            + id:5 (number) -地区id
+            + name:崇文区 (string) -地区名称
+            + full_name:北京市 崇文区 (string) -地区全称
+            + pinyin:ChongWenQu (string) -地区拼音
+            + acronym:cwq (string) -地区首拼
+            + parent_id:1 (number) -父地区id
+            + code:110103 (number) -地区标识
+    
+### 获取所有地区数据 [GET /v1/region/all{?type}]
+
++ Parameters
+
+    + type (string) - 地区数组结构.
+        + default:tree
+        + members
+            + `tree`
+            + `list`
+
++ Response 200 (application/json)
+    
+    树形数据结构
+    
+    + Body
+            [
+                {
+                    "id": "1",
+                    "name": "北京市",
+                    "full_name": "北京市",
+                    "pinyin": "BeiJingShi",
+                    "acronym": "bjs",
+                    "parent_id": "0",
+                    "code": "110000",
+                    "children": [
+                        {
+                            "id": "3",
+                            "name": "东城区",
+                            "full_name": "北京市 东城区",
+                            "pinyin": "DongChengQu",
+                            "acronym": "dcq",
+                            "parent_id": "1",
+                            "code": "110101"
+                        },
+                        {
+                            "id": "4",
+                            "name": "西城区",
+                            "full_name": "北京市 西城区",
+                            "pinyin": "XiChengQu",
+                            "acronym": "xcq",
+                            "parent_id": "1",
+                            "code": "110102"
+                        },
+                        ...
+                    ]
+                }
+                ...
+            ]
+            
++ Response 200 (application/json)
+        
+    列表数据结构
+
+    + Body
+    
+            [
+                {
+                    "id": "1",
+                    "name": "北京市",
+                    "full_name": "北京市",
+                    "pinyin": "BeiJingShi",
+                    "acronym": "bjs",
+                    "parent_id": "0",
+                    "code": "110000",
+                },
+                {
+                    "id": "3",
+                    "name": "东城区",
+                    "full_name": "北京市 东城区",
+                    "pinyin": "DongChengQu",
+                    "acronym": "dcq",
+                    "parent_id": "1",
+                    "code": "110101"
+                },
+                {
+                    "id": "4",
+                    "name": "西城区",
+                    "full_name": "北京市 西城区",
+                    "pinyin": "XiChengQu",
+                    "acronym": "xcq",
+                    "parent_id": "1",
+                    "code": "110102"
+                },
+                ...
+            ]
+            
++ Response 404 (application/json)
+
+### 获取单个地区数据 [GET /v1/region{?code}]
+
++ Parameters
+
+    + code:1 (number) - 地区id或code.
+    
++ Response 200 (application/json)
+
+    [地区][]
+    
++ Response 404 (application/json)
+
+### 获取一个地区的父地区 [GET /v1/region/parent{?code}]
+
++ Parameters
+
+    + code:1 (number) - 地区id或code.
+    
++ Response 200 (application/json)
+
+    [地区][]
+    
++ Response 404 (application/json)
+
+### 获取一个地区的子地区 [GET /v1/region/children{?code}]
+
++ Parameters
+
+    + code:1 (number) - 地区id或code.
+    
++ Response 200 (application/json)
+
+    [
+        {
+            "id": "3",
+            "name": "东城区",
+            "full_name": "北京市 东城区",
+            "pinyin": "DongChengQu",
+            "acronym": "dcq",
+            "parent_id": "1",
+            "code": "110101"
+        },
+        {
+            "id": "4",
+            "name": "西城区",
+            "full_name": "北京市 西城区",
+            "pinyin": "XiChengQu",
+            "acronym": "xcq",
+            "parent_id": "1",
+            "code": "110102"
+        },
+        ...
+    ]
+    
+    
++ Response 404 (application/json)
