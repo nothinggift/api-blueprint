@@ -1,0 +1,169 @@
+FORMAT: 1A
+HOST: http://api.gpcph.com/
+
+# 旅游api
+
+为方便使用和更新，文档使用在线方式编写，因为软件收费限制，文档为开放式浏览，所以文档地址不能外传
+
+api采用restful规范架构，使用oauth2授权协议。具体说明可查询相关文档，这里只做简要使用说明。
+
+## URL规则
+
+假设用户资源命名为user，则可用下面的url来进行相关操作，注意 *users* 和 *user* 的区别
+
+- **GET** `/users` 或 `/user/index` 获取用户列表
+- **GET** `/users/123` 或 `/user/view?id=123` 获取用户id为123的用户
+- **POST** `/users` 或 `/user/create` 创建一个用户
+- **PUT** `/users/123` 或 `user/update?id=123` 更新一个用户
+- **DELETE** `/users/123` 或 `user/delete?id=123` 删除一个用户
+
+除上述常用命令外，还有
+**OPTIONS** 用来显示可用的操作
+**HEAD** 类似于 **GET**，但只获取简要信息
+
+文档里所有的示例url都采用前者书写
+
+## api请求响应状态
+
+api请求响应状态同样使用标准规范，以http状态码进行分辨
+
+- `200` 正常响应，没有错误
+- `201` 服务器创建资源成功，并在HEAD里的Location里返回资源地址url。例如：`POST /users` 创建用户，返回201状态码代表创建成功，并返回url `/users/123`
+- `204` 操作成功，返回内容为空。例如：删除用户成功会返回204。
+- `400` 请求失败，会同时返回响应错误信息
+- `401` 权限验证失败，如用户未登录，应跳转到登录页登录
+- `403` 用户没有访问对应资源的权限
+- `404` 页面未找到
+- `405` 错误的请求方式。例如GET请求使用了POST
+- `422` 数据验证失败，会返回对应的错误属性和原因
+- `429` 访问次数过多
+- `500` 服务器内部错误
+
+## 用户授权
+
+用户访问授权api需要经过三个步骤
+
+1. 用户访问登录页面，并输入手机号，请求 *发送验证码*。
+2. 使用用户手机号以及验证码请求 *用户登录*，获取`access_token`和`refresh_token`，用户使用`access_token`访问授权api。
+3. 当用户的 `access_token` 过期时，使用`refresh_token`请求刷新授权码api来获取新的`access_token`。
+
+
+## 使用授权token访问api
+
+非开放api在直接访问时，会返回 `401`错误，这时应携带授权token进行访问
+
+token有两种传递方式，一种是使用GET或POST直接传递，第二种是使用header里的Authorization参数进行传递
+
+**本api只使用header方式接收参数**
+
+具体传递方法为在api请求的header里添加Authorization参数，然后设置其值为Bearer token。
+
+*即：Bearer(字符串) +  (一个空格) + token值(字符串)*
+
+
+## 用户授权 [/oauth]
+
+###发送验证码 [POST /v1/public/sms-verification]
+
+调用该api，用户将收到一条含有验证码的短信，app端无法获取到该验证码
+    
++ Request (application/json)
+    + Attributes
+        + phone:18612345678 (string) - 11位数字手机号码
+    
++ Response 204
+
+
++ Response 422 (application/json)
+
+        [
+            {
+                "field": "phone",
+                "message": "无效的手机号"
+            }
+        ]
+        
+
+### 用户登录 [POST /oauth2/token]
+
+将用户收到的验证码与用户手机号通过该接口进行验证，验证通过获得token
+
+请求使用的 `client_id` 和 `client_secret` 需到[网站后台](http://backend.gpcph.com/oauth-clients/index)进行添加。
+
+*验证规则：用户在15分钟内收到的验证码都可以通过验证，但一个验证码只能通过一次验证*
+
+
++ Request (application/json)
+    + Attributes
+        + grant_type:password (string) -授权方式，固定为password
+        + username:18612345678 (string) -11位手机号码
+        + password:1234 (string) -用户手机收到的短信验证码
+        + client_id:testclient (string) -用来区分不同的请求源id
+        + client_secret:testpass (string) -与clientid配对的密码
+
++ Response 200 (application/json)
+
+    + Attributes (object)
+        + access_token:fc00fc2d7adc76df18cbabd91140ca525fbe7db0 (string) -用户授权码
+        + expires_in:86400 (number) -授权码可用时间，单位秒
+        + token_type:Bearer (string) -授权码传递方式
+        + scope:null (string) -授权码使用范围
+        + refresh_token:2998aa7128f8deb3ddb526d91b2b8766a2036d8d (string) -授权刷新码
+
++ Response 401 (application/json)
+
+    用户的手机号与验证码未通过验证
+    
+    + Body
+        {
+            "name": "Unauthorized",
+            "message": "Invalid username and password combination",
+            "code": 0,
+            "status": 401,
+            "type": "filsh\\yii2\\oauth2server\\exceptions\\HttpException"
+        }
+
+
+### 获取新的授权码 [POST /oauth2/token]
+
+用户授权码只有一天的有效期，当授权码过期时使用刷新码来直接获取新的授权码，不需要用户来重新执行登录操作
+
++ Request (application/json)
+    + Attributes
+        + `grant_type`:`refresh_token` (string) -授权方式，固定为refresh\_token
+        + refresh_token:2998aa7128f8deb3ddb526d91b2b8766a2036d8d (string) -刷新授权码
+        + client_id:testclient (string) -用来区分不同的请求源id
+        + client_secret:testpass (string) -与clientid配对的密码
+
++ Response 200 (application/json)
+
+    + Attributes
+        + access_token:fc00fc2d7adc76df18cbabd91140ca525fbe7db0 (string) -用户授权码
+        + expires_in:86400 (number) -授权码可用时间，单位秒
+        + token_type:Bearer (string) -授权码传递方式
+        + scope:`null` (string) -授权码使用范围
+        + refresh_token:2998aa7128f8deb3ddb526d91b2b8766a2036d8d (string) -授权刷新码
+        
+# 用户 [/users]
+
+## 获取用户自身信息 [GET /users/{id}]
+
+
+# Group 开放api
+
+## 地区 [/v1/region]
+
+### 获取所有地区数据 [GET v1/region/all{?type}]
+
++ Parameters
+
+    + type: tree (string) - 地区数组结构，可选值有 tree,list.
+
++ Attributes (object)
+    + id:5 (number) -地区id
+    + name:崇文区 (string) -地区名称
+    + full_name:北京市 崇文区 (string) -地区全称
+    + pinyin:ChongWenQu (string) -地区拼音
+    + acronym:cwq (string) -地区首拼
+    + parent_id:1 (number) -父地区id
+    + code:110103 (number) -地区标识
