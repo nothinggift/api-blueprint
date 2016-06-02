@@ -202,6 +202,12 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 ## 获取用户自身信息 [GET /v1/user/self]
 
++ Request (application/json)
+    
+    + Headers
+        
+        Authorization: Bearer 68792e2f8f03cf63a20839bd51736fe475444f92
+
 + Response 200 (application/json)
     {
       "id": 3,
@@ -232,6 +238,12 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + birthday:`1998-10-17` (string) -用户生日
     + status:10 (number) -用户状态
     
++ Request (application/json)
+    
+    + Headers
+        
+        Authorization: Bearer 68792e2f8f03cf63a20839bd51736fe475444f92
+
 + Response 200 (application/json)
     {
       "id": 3,
@@ -261,6 +273,13 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + status:10 (number) -用户状态
 
 + Request (application/json)
+
+    + Headers
+        
+        Authorization: Bearer 68792e2f8f03cf63a20839bd51736fe475444f92
+        
+    + Body
+    
     {
       "username": "昵称",
       "sex": 1,
