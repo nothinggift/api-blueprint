@@ -88,6 +88,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 ## 用户授权 [/oauth]
 
+
 ###发送验证码 [POST /v1/public/sms-verification]
 
 调用该api，用户将收到一条含有验证码的短信，app端无法获取到该验证码
@@ -186,6 +187,12 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         
 # 用户 [/users]
 
++ Model
+
+    + Headers
+        
+        Authorization: Bearer 68792e2f8f03cf63a20839bd51736fe475444f92
+    
 + Attributes
     + id:1 (number) -用户id
     + phone:18612345678 (number) -用户手机
@@ -206,7 +213,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
     + Headers
         
-        Authorization: Bearer 68792e2f8f03cf63a20839bd51736fe475444f92
+        Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
 + Response 200 (application/json)
     {
@@ -242,7 +249,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
     + Headers
         
-        Authorization: Bearer 68792e2f8f03cf63a20839bd51736fe475444f92
+        Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
 + Response 200 (application/json)
     {
@@ -276,8 +283,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
     + Headers
         
-        Authorization: Bearer 68792e2f8f03cf63a20839bd51736fe475444f92
-        
+        Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+    
     + Body
     
     {
