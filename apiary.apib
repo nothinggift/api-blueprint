@@ -170,6 +170,20 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         + scope:`null` (string) -授权码使用范围
         + refresh_token:2998aa7128f8deb3ddb526d91b2b8766a2036d8d (string) -授权刷新码
         
++ Response 400 (application/json)
+
+    refresh_token 错误或已过期
+
+    + Body
+            {
+                "name": "Bad Request",
+                "message": "The client credentials are invalid",
+                "code": 0,
+                "status": 400,
+                "type": "filsh\\yii2\\oauth2server\\exceptions\\HttpException"
+            }
+    
+        
 # 用户 [/users]
 
 + Attributes
