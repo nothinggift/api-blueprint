@@ -60,6 +60,27 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 *即：Bearer(字符串) +  (一个空格) + token值(字符串)*
 
+## expand数据
+
+部分资源含有expand数据，即关联数据。
+
+例如用户所在的城市与城市数据关联，要获取用户所在的城市信息时，通过url传参 `expand=region` 即可获得地区数据。
+
+多个关联使用逗号分隔 `expand=expand1,expand2` 
+
+
+```js
+{
+    "id":3,
+    "username": "test112",
+    ...
+    "region":{
+        "full_name":"北京市 西城区",
+        "code":110102,
+    }
+}
+```
+
 ## 422错误状态处理
 
 当在更新和创建数据时，如果数据校验错误就会报出422错误
@@ -188,7 +209,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 # 用户 [/users]
 
 - expand
-    - [region](地区)  根据region_code获取的关联数据
+    - [region](#region)  根据region_code获取的关联数据
 
 + Model
 
@@ -356,6 +377,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 # Group 开放api
 
+<a name="region"></a>
+
 ## 地区 [/v1/region]
 
 + Model(application/json)
@@ -368,7 +391,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
       "parent_id": 43,
       "code": "130100"
     }
-
+    
 + Attributes
     + id:5 (number) -地区id
     + name:崇文区 (string) -地区名称
