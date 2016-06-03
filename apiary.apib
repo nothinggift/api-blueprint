@@ -187,6 +187,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         
 # 用户 [/users]
 
+- expand
+    - [region](地区)  根据region_code获取的关联数据
+
 + Model
 
     + Headers
@@ -201,6 +204,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + sex:1 (number) -用户性别(0:男性;1:女性)
     + birthday:`1998-10-17` (string) -用户生日
     + email:28576920@qq.com (string) -用户邮箱
+    + profile (string) -用户简介
+    + region_code:`110102` (string) -所在城市code
     + status:10 (number) -用户状态
     + created_at (number) -用户注册时间
     + updated_at (number) -用户信息最后更新时间
@@ -224,6 +229,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
       "birthday": null,
       "phone": "18612345678",
       "email": "",
+      "profile":null,
+      "region_code":null,
       "status": 10,
       "created_at": 1464059772,
       "updated_at": 1464070760
@@ -243,6 +250,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + portrait:`/pic/h2ba9205na9g7205nn30z.jpg` (string) -用户头像uri
     + sex:1 (number) -用户性别(0:男性;1:女性)
     + birthday:`1998-10-17` (string) -用户生日
+    + profile (string) -用户简介
+    + region_code:`110102` (string) -所在城市code
     + status:10 (number) -用户状态
     
 + Request (application/json)
@@ -258,6 +267,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
       "portrait": null,
       "sex": null,
       "birthday": null,
+      "profile":null,
+      "region_code":null,
       "status": 10,
     }
 
@@ -277,6 +288,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + portrait:`/pic/h2ba9205na9g7205nn30z.jpg` (string) -用户头像uri
     + sex:1 (number) -用户性别(0:男性;1:女性)
     + birthday:`1998-10-17` (string) -用户生日
+    + profile (string) -用户简介
+    + region_code:`110102` (string) -所在城市code
     + status:10 (number) -用户状态
 
 + Request (application/json)
@@ -306,6 +319,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
       "birthday": "2002-10-01",
       "phone": "18612345678",
       "email": "",
+      "profile":null,
+      "region_code":null,
       "status": 10,
       "created_at": 1464059772,
       "updated_at": 1464070760
