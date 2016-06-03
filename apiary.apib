@@ -14,7 +14,7 @@ api采用restful规范架构，使用oauth2授权协议。具体说明可查询�
 - **GET** `/users` 或 `/user/index` 获取用户列表
 - **GET** `/users/123` 或 `/user/view?id=123` 获取用户id为123的用户
 - **POST** `/users` 或 `/user/create` 创建一个用户
-- **PATCH** `/users/123` 或 `user/update?id=123` 更新一个用户
+- **PATCH** 或 **PUT** `/users/123` 或 `user/update?id=123` 更新一个用户
 - **DELETE** `/users/123` 或 `user/delete?id=123` 删除一个用户
 
 除上述常用命令外，还有
@@ -295,7 +295,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Response 404 (application/json)
     
-## 更新一名用户信息 [PATCH /v1/users/{id}]
+## 更新一名用户信息 [PUT /v1/users/{id}]
 
 + Parameters
 
@@ -304,7 +304,6 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 + Attributes
 
     + username:昵称 (string) -用户昵称
-    + phone:18612345678 (number) -用户手机
     + email:28576920@qq.com (string) -用户邮箱
     + portrait:`/pic/h2ba9205na9g7205nn30z.jpg` (string) -用户头像uri
     + sex:1 (number) -用户性别(0:男性;1:女性)
