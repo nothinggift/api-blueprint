@@ -197,6 +197,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     refresh_token 错误或已过期
 
     + Body
+    
             {
                 "name": "Bad Request",
                 "message": "The client credentials are invalid",
@@ -215,7 +216,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
     + Headers
         
-        Authorization: Bearer 68792e2f8f03cf63a20839bd51736fe475444f92
+            Authorization: Bearer 68792e2f8f03cf63a20839bd51736fe475444f92
     
 + Attributes
     + id:1 (number) -用户id
@@ -239,23 +240,24 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
     + Headers
         
-        Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
 + Response 200 (application/json)
-    {
-      "id": 3,
-      "username": null,
-      "portrait": null,
-      "sex": null,
-      "birthday": null,
-      "phone": "18612345678",
-      "email": "",
-      "profile":null,
-      "region_code":null,
-      "status": 10,
-      "created_at": 1464059772,
-      "updated_at": 1464070760
-    }
+
+        {
+          "id": 3,
+          "username": null,
+          "portrait": null,
+          "sex": null,
+          "birthday": null,
+          "phone": "18612345678",
+          "email": "",
+          "profile":null,
+          "region_code":null,
+          "status": 10,
+          "created_at": 1464059772,
+          "updated_at": 1464070760
+        }
 
 ## 获取一名用户信息 [GET /v1/users/{id}]
 
@@ -279,19 +281,20 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
     + Headers
         
-        Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
 + Response 200 (application/json)
-    {
-      "id": 3,
-      "username": null,
-      "portrait": null,
-      "sex": null,
-      "birthday": null,
-      "profile":null,
-      "region_code":null,
-      "status": 10,
-    }
+
+        {
+          "id": 3,
+          "username": null,
+          "portrait": null,
+          "sex": null,
+          "birthday": null,
+          "profile":null,
+          "region_code":null,
+          "status": 10,
+        }
 
 + Response 404 (application/json)
     
@@ -316,14 +319,14 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
     + Headers
         
-        Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
     
     + Body
     
-    {
-      "username": "昵称",
-      "sex": 1
-    }
+            {
+              "username": "昵称",
+              "sex": 1
+            }
     
 + Response 200 (application/json)
 
@@ -331,20 +334,20 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
     + Body
 
-    {
-      "id": 3,
-      "username": 昵称,
-      "portrait": null,
-      "sex": 1,
-      "birthday": "2002-10-01",
-      "phone": "18612345678",
-      "email": "",
-      "profile":null,
-      "region_code":null,
-      "status": 10,
-      "created_at": 1464059772,
-      "updated_at": 1464070760
-    }
+            {
+              "id": 3,
+              "username": 昵称,
+              "portrait": null,
+              "sex": 1,
+              "birthday": "2002-10-01",
+              "phone": "18612345678",
+              "email": "",
+              "profile":null,
+              "region_code":null,
+              "status": 10,
+              "created_at": 1464059772,
+              "updated_at": 1464070760
+            }
     
 + Response 403 (application/json)
 
@@ -352,13 +355,13 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
     + Body
     
-        {
-          "name": "Forbidden",
-          "message": "没有权限修改该用户资料",
-          "code": 0,
-          "status": 403,
-          "type": "yii\\web\\ForbiddenHttpException"
-        }
+            {
+              "name": "Forbidden",
+              "message": "没有权限修改该用户资料",
+              "code": 0,
+              "status": 403,
+              "type": "yii\\web\\ForbiddenHttpException"
+            }
 
 + Response 422 (application/json)
         
@@ -381,15 +384,16 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 ## 地区 [/v1/region]
 
 + Model(application/json)
-    {
-      "id": 44,
-      "name": "石家庄市",
-      "full_name": "河北省 石家庄市",
-      "pinyin": "ShiJiaZhuangShi",
-      "acronym": "sjzs",
-      "parent_id": 43,
-      "code": "130100"
-    }
+
+        {
+          "id": 44,
+          "name": "石家庄市",
+          "full_name": "河北省 石家庄市",
+          "pinyin": "ShiJiaZhuangShi",
+          "acronym": "sjzs",
+          "parent_id": 43,
+          "code": "130100"
+        }
     
 + Attributes
     + id:5 (number) -地区id
@@ -421,8 +425,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Parameters
 
-    + type (string) - 地区数组结构.
-        + default:tree
+    + type (string,optional) - 地区数组结构.
+        + default: tree
         + members
             + `tree`
             + `list`
@@ -433,6 +437,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     树形数据结构
     
     + Body
+    
+            //树形数据结构
             [
                 {
                     "id": "1",
@@ -467,12 +473,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                 ...
             ]
             
-+ Response 200 (application/json)
-        
-    列表数据结构
-
-    + Body
-    
+            //列表型数据结构
             [
                 {
                     "id": "1",
@@ -504,6 +505,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                 ...
             ]
             
+            
 + Response 404 (application/json)
 
 ### 获取单个地区数据 [GET /v1/region{?code}]
@@ -512,7 +514,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
     + code:1 (number) - 地区id或code.
     
-+ Response 200 (application/json)
++ Response 200
 
     [地区][]
     
@@ -524,7 +526,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
     + code:1 (number) - 地区id或code.
     
-+ Response 200 (application/json)
++ Response 200
 
     [地区][]
     
@@ -538,27 +540,27 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 200 (application/json)
 
-    [
-        {
-            "id": "3",
-            "name": "东城区",
-            "full_name": "北京市 东城区",
-            "pinyin": "DongChengQu",
-            "acronym": "dcq",
-            "parent_id": "1",
-            "code": "110101"
-        },
-        {
-            "id": "4",
-            "name": "西城区",
-            "full_name": "北京市 西城区",
-            "pinyin": "XiChengQu",
-            "acronym": "xcq",
-            "parent_id": "1",
-            "code": "110102"
-        },
-        ...
-    ]
+        [
+            {
+                "id": "3",
+                "name": "东城区",
+                "full_name": "北京市 东城区",
+                "pinyin": "DongChengQu",
+                "acronym": "dcq",
+                "parent_id": "1",
+                "code": "110101"
+            },
+            {
+                "id": "4",
+                "name": "西城区",
+                "full_name": "北京市 西城区",
+                "pinyin": "XiChengQu",
+                "acronym": "xcq",
+                "parent_id": "1",
+                "code": "110102"
+            },
+            ...
+        ]
     
     
 + Response 404 (application/json)
