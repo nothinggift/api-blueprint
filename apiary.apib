@@ -380,58 +380,44 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 # 地导 [/v1/service-providers]
 
-+ Attributes
-
++ Attributes(地导base)
     + `user_id`:1 (number) -用户id
-    + `real_name`:`张三` (string) -真实姓名
-    + `id_card_number`:`120103199104054373` (string) -身份证号
-    + `service_region`:`110102` (number) -服务区域
-    + `front_of_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg ` (string) -身份证正面照片
-    + `back_of_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg ` (string) -身份证背面照片
-    + `photo_of_holding_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg` (string) -手持身份证照片
     + `agreed_to_the_agreement`:1 (number) -同意服务协议
     + `review_status`:1 (number) -审核状态
     + `review_message`:`身份证号与证件不符` (string) -审核信息
     + `created_at`:`1464059772` (number) -申请时间
     + `updated_at`:`1464059772` (number) -更新时间
+    
++ Model(application/json)
+
+        {
+          "real_name": "张三",
+          "id_card_number": "18603265504",
+          "service_region": 110102,
+          "front_of_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
+          "back_of_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
+          "photo_of_holding_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
+          "created_at": 1465183849,
+          "updated_at": 1465183849,
+          "user_id": 3,
+          "id": 1
+        }
+    
 
 ## 申请成为地导 [POST]
 
 + Request (application/json)
     
-    + Attributes
-
-        + `real_name`:`张三` (string) -真实姓名
-        + `id_card_number`:`120103199104054373` (string) -身份证号
-        + `service_region`:`110102` (number) -服务区域
-        + `front_of_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg ` (string) -身份证正面照片
-        + `back_of_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg ` (string) -身份证背面照片
-        + `photo_of_holding_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg` (string) -手持身份证照片
+    + Attributes(地导base)
     
     + Headers
         
             Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
-+ Response 201 (application/json)
++ Response 201
     
-    申请成功
-    
-    + Body
-    
-            {
-              "real_name": "张三",
-              "id_card_number": "18603265504",
-              "service_region": 110102,
-              "front_of_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
-              "back_of_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
-              "photo_of_holding_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
-              "created_at": 1465183849,
-              "updated_at": 1465183849,
-              "user_id": 3,
-              "id": 1
-            }
+    [地导][]
             
-
 + Response 422 (application/json)
 
 ## 更新身份认证信息 [PUT /v1/service-providers/{id}]
@@ -442,37 +428,15 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Request (application/json)
     
-    + Attributes
-
-        + `real_name`:`张三` (string) -真实姓名
-        + `id_card_number`:`120103199104054373` (string) -身份证号
-        + `service_region`:`110102` (number) -服务区域
-        + `front_of_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg ` (string) -身份证正面照片
-        + `back_of_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg ` (string) -身份证背面照片
-        + `photo_of_holding_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg` (string) -手持身份证照片
+    + Attributes(地导base)
     
     + Headers
         
             Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
-+ Response 200 (application/json)
++ Response 200
     
-    更新成功
-    
-    + Body
-    
-            {
-              "real_name": "张三",
-              "id_card_number": "18603265504",
-              "service_region": 110102,
-              "front_of_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
-              "back_of_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
-              "photo_of_holding_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
-              "created_at": 1465183849,
-              "updated_at": 1465183849,
-              "user_id": 3,
-              "id": 1
-            }
+    [地导][]
             
 + Response 403 (application/json)
 
@@ -491,30 +455,23 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Response 422 (application/json)
 
+
 ## 查看身份认证信息 [GET /v1/service-providers/{id}]
 
 + Parameters
 
     + id:21 (number) - 用户id.
     
-+ Response 200 (application/json)
-    
-    + Body
-    
-            {
-              "real_name": "张三",
-              "id_card_number": "18603265504",
-              "service_region": 110102,
-              "front_of_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
-              "back_of_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
-              "photo_of_holding_id_card": "/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg",
-              "created_at": 1465183849,
-              "updated_at": 1465183849,
-              "user_id": 3,
-              "id": 1
-            }
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
             
-            
++ Response 200 
+    
+    [地导][]
+    
 + Response 403 (application/json)
 
     用户查看其他用户资料
@@ -537,8 +494,25 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
     + id:21 (number) - 用户id.
 
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
 + Response 204
 
+
+# Data Structures
+
+## 地导base (object)
+
++ `real_name`:`张三` (string) -真实姓名
++ `id_card_number`:`120103199104054373` (string) -身份证号
++ `service_region`:`110102` (number) -服务区域
++ `front_of_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg ` (string) -身份证正面照片
++ `back_of_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg ` (string) -身份证背面照片
++ `photo_of_holding_id_card`:`/images/c9b9bdf4-df7f-4c18-bc3e-10f2c1b37027.jpg` (string) -手持身份证照片
 
 # Group 开放api
 
