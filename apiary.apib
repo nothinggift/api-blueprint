@@ -687,59 +687,6 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             
 + Response 404 (application/json)
 
-### 搜索地区数据 [GET /v1/regions{?id}{?name}{?full_name}{?pinyin}{?acronym}{?code}{?parent_id}{?level}]
-
-根据地区的各种属性搜索相应的数据
-    
-具体的搜索定制信息参考 [数据搜索](#search)
-
-+ Parameters
-    + id (number,optional) -地区id
-    + name (string,optional) -地区名称
-    + full_name (string,optional) -地区全称
-    + pinyin (string,optional) -地区拼音
-    + acronym (string,optional) -地区首拼
-    + parent_id (number,optional) -父地区id
-    + code (number,optional) -地区标识
-    + level (number,optional) -地区的层级，省为1
-
-
-+ Response 200 (application/json)
-            
-            [
-                {
-                    "id": "1",
-                    "name": "北京市",
-                    "full_name": "北京市",
-                    "pinyin": "BeiJingShi",
-                    "acronym": "bjs",
-                    "parent_id": "0",
-                    "code": "110000",
-                    "level":1
-                },
-                {
-                    "id": "3",
-                    "name": "东城区",
-                    "full_name": "北京市 东城区",
-                    "pinyin": "DongChengQu",
-                    "acronym": "dcq",
-                    "parent_id": "1",
-                    "code": "110101"
-                    "level":2
-                },
-                {
-                    "id": "4",
-                    "name": "西城区",
-                    "full_name": "北京市 西城区",
-                    "pinyin": "XiChengQu",
-                    "acronym": "xcq",
-                    "parent_id": "1",
-                    "code": "110102"
-                    "level":2
-                },
-                ...
-            ]
-
 
 ### 获取单个地区数据 [GET /v1/regions/{code}]
 
@@ -799,3 +746,58 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
     
 + Response 404 (application/json)
+
+### 搜索地区数据 [/v1/regions{?id,name,full_name,pinyin,acronym,parent_id,code,level}]
+
+#### 条件搜索 [GET]
+
+根据地区的各种属性搜索相应的数据
+    
+具体的搜索定制信息参考 [数据搜索](#search)
+
++ Parameters
+    + id (optional,number) ... 地区id
+    + name (optional,string) ... 地区名称
+    + full_name (optional,string) ... 带上级的全程
+    + pinyin (optional,string) ... 拼音
+    + acronym (optional,string) ... 首拼
+    + parent_id (optional,number) ... 父地区id
+    + code (optional,number) ... 地区代码
+    + level (optional,number) ... 层级
+
+
++ Response 200 (application/json)
+            
+            [
+                {
+                    "id": "1",
+                    "name": "北京市",
+                    "full_name": "北京市",
+                    "pinyin": "BeiJingShi",
+                    "acronym": "bjs",
+                    "parent_id": "0",
+                    "code": "110000",
+                    "level":1
+                },
+                {
+                    "id": "3",
+                    "name": "东城区",
+                    "full_name": "北京市 东城区",
+                    "pinyin": "DongChengQu",
+                    "acronym": "dcq",
+                    "parent_id": "1",
+                    "code": "110101"
+                    "level":2
+                },
+                {
+                    "id": "4",
+                    "name": "西城区",
+                    "full_name": "北京市 西城区",
+                    "pinyin": "XiChengQu",
+                    "acronym": "xcq",
+                    "parent_id": "1",
+                    "code": "110102"
+                    "level":2
+                },
+                ...
+            ]
