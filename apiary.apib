@@ -562,7 +562,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
           "acronym": "sjzs",
           "parent_id": 43,
           "code": "130100",
-          "level":2
+          "level":2,
+          "is_city":1,
+          "is_hot":0
         }
     
 + Attributes
@@ -574,6 +576,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + parent_id:1 (number) -父地区id
     + code:110103 (number) -地区标识
     + level:2 (number) -地区的层级，省为1
+    + is_hot:1 (number) -是否热门城市 (0:否,1:是)
+    + is_city:1 (number) -是否显示在城市列表(0:否,1:是)
     + children (array,optional) -子地区数组,如没有子地区则没有该属性
         + 
             + id:5 (number) -地区id
@@ -622,6 +626,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                     "parent_id": "0",
                     "code": "110000",
                     "level":1,
+                    "is_city":1,
+                    "is_hot":1,
                     "children": [
                         {
                             "id": "3",
@@ -631,7 +637,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                             "acronym": "dcq",
                             "parent_id": "1",
                             "code": "110101",
-                            "level":2
+                            "level":2,
+                            "is_city":0,
+                            "is_hot":0,
                         },
                         {
                             "id": "4",
@@ -641,7 +649,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                             "acronym": "xcq",
                             "parent_id": "1",
                             "code": "110102",
-                            "level":2
+                            "level":2,
+                            "is_city":0,
+                            "is_hot":0,
                         },
                         ...
                     ]
@@ -659,7 +669,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                     "acronym": "bjs",
                     "parent_id": "0",
                     "code": "110000",
-                    "level":1
+                    "level":1,
+                    "is_city":1,
+                    "is_hot":1,
                 },
                 {
                     "id": "3",
@@ -669,7 +681,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                     "acronym": "dcq",
                     "parent_id": "1",
                     "code": "110101"
-                    "level":2
+                    "level":2,
+                    "is_city":0,
+                    "is_hot":0
                 },
                 {
                     "id": "4",
@@ -679,7 +693,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                     "acronym": "xcq",
                     "parent_id": "1",
                     "code": "110102"
-                    "level":2
+                    "level":2,
+                    "is_city":0,
+                    "is_hot":0
                 },
                 ...
             ]
@@ -729,7 +745,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                 "acronym": "dcq",
                 "parent_id": "1",
                 "code": "110101",
-                "level":2
+                "level":2,
+                "is_city":0,
+                "is_hot":0
             },
             {
                 "id": "4",
@@ -739,7 +757,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                 "acronym": "xcq",
                 "parent_id": "1",
                 "code": "110102",
-                "level":2
+                "level":2,
+                "is_city":0,
+                "is_hot":0
             },
             ...
         ]
@@ -747,7 +767,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 404 (application/json)
 
-### 搜索地区数据 [/v1/regions{?id,name,full_name,pinyin,acronym,parent_id,code,level}]
+### 搜索地区数据 [/v1/regions{?id,name,full_name,pinyin,acronym,parent_id,code,level,is_hot,is_city}]
 
 #### 条件搜索 [GET]
 
@@ -764,6 +784,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + parent_id (optional,number) ... 父地区id
     + code (optional,number) ... 地区代码
     + level (optional,number) ... 层级
+    + is_hot (optional,number) ... 是否热门城市
+    + is_city (optional,number) ... 是否显示在城市列表
 
 
 + Response 200 (application/json)
@@ -777,7 +799,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                     "acronym": "bjs",
                     "parent_id": "0",
                     "code": "110000",
-                    "level":1
+                    "level":1,
+                    "is_city":1,
+                    "is_hot":1
                 },
                 {
                     "id": "3",
@@ -787,7 +811,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                     "acronym": "dcq",
                     "parent_id": "1",
                     "code": "110101"
-                    "level":2
+                    "level":2,
+                    "is_city":0,
+                    "is_hot":0
                 },
                 {
                     "id": "4",
@@ -797,7 +823,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                     "acronym": "xcq",
                     "parent_id": "1",
                     "code": "110102"
-                    "level":2
+                    "level":2,
+                    "is_city":0,
+                    "is_hot":0tian
                 },
                 ...
             ]
