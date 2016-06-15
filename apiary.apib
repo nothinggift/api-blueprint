@@ -863,3 +863,55 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                 },
                 ...
             ]
+
+## 银行 [/v1/goods]
+
++ Attributes
+    + id:5 (number) -银行id
+    + name:中国农业银行 (string) -银行名称
+    + code (string) -银行支付代码，暂无用
+
+#### 搜索银行数据 [GET /v1/banks{?id,name,code}]
+
++ Attributes
+    + id:5 (number) -银行id
+    + name:中国农业银行 (string) -银行名称
+    + code (string) -银行支付代码，暂无用
+
++ Parameters
+    + id (optional,number) ... 银行id
+    + name (optional,string) ... 银行名称
+    + code (optional,number) ... 银行支付代码
+    
++ Response 200 (application/json)
+    
+        [
+            {
+                "id": 1,
+                "name": "中国农业银行",
+                "code": null,
+                "icon": "/images/2304be15-bd31-45ac-9aba-0cb20bab5ddc.jpeg",
+            },
+            {
+                "id": 2,
+                "name": "中国工商银行",
+                "code": null,
+                "icon": "/images/2304be15-bd31-45ac-9aba-0cb20bab5ddc.jpeg",
+            }
+        ]
+
+#### 获取单个银行数据 [GET /v1/banks/{id}]
+
++ Parameters
+    + id (optional,number) ... 银行id
+    
++ Response 200 (application/json)
+    
+        {
+            "id": 1,
+            "name": "中国农业银行",
+            "code": null,
+            "icon": "/images/2304be15-bd31-45ac-9aba-0cb20bab5ddc.jpeg",
+        },
+
++ Response 404 (application/json)
