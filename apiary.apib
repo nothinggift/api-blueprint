@@ -906,6 +906,74 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Response 204
 
+# 服务版本 [/v1/service-versions]
+
++ Attributes
+    + id:5 (number) - 服务版本id
+    + service_id (number) - 服务id
+    + version:2 (number) - 版本号
+    + status:1 (number) - 状态（0：正常状态;1:提交审核;2:审核通过;3:审核未通过;4:提交审核后在未审核前被新的提交覆盖）
+    + created_at (number) - 创建时间
+    + updated_at (number) - 更新时间
+    + review_message (string) - 审核说明
+
+## 搜索当前用户所有服务版本 [GET /v1/service-versions]
+
+可以使用id，version,status，created\_at，updated\_at等条件进行搜索和排序
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
++ Response 200
+    
+            [
+              {
+                "id": 6,
+                "service_id": 1,
+                "version": 2,
+                "status": 0,
+                "created_at": 1465869110,
+                "updated_at": 1465869110,
+                "review_message": null
+              },
+              {
+                "id": 7,
+                "service_id": 1,
+                "version": 3,
+                "status": 0,
+                "created_at": 1465871721,
+                "updated_at": 1465871721,
+                "review_message": null
+              }
+            ]
+
+## 根据id获取当前用户的一个服务版本 [GET /v1/service-versions/{id}]
+
++ Parameters
+
+    + id:3 (number) - 服务版本id
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
++ Response 200
+    
+            {
+                "id": 6,
+                "service_id": 1,
+                "version": 2,
+                "status": 0,
+                "created_at": 1465869110,
+                "updated_at": 1465869110,
+                "review_message": null
+            }
+
 # Group 开放api
 
 <a name="region"></a>
