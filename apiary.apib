@@ -580,6 +580,101 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 404
 
+# 地导服务 [/v1/service]
+
++ Attributes
+    + id (number) - id
+    + user_id (number) - 用户id
+    + title (string) - 标题
+    + service_region:`110000` (number) - 地区code
+    + price (number) -每日服务价格
+    + `max_number_of_services` (number) - 单次最高服务人数
+    + detail (string) - 富文本的服务详情
+    + status (number) - 状态（0:尚未提交审核过，没有能够上线的版本;1:在线状态;2:离线状态;3:被管理人员锁定）
+    + review_status (number) - 审核状态（0:没有可以提交审核的版本,1:有更新的版本，但还没有提交审核;2:正在审核4:审核失败）
+    + updated_at:1466394027 (number) - 更新时间
+    + service_item (array) - 服务项目
+    + service_scenic (array) - 服务景点
+    
+## 获取当前用户的地导服务 [GET /v1/service]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
++ Response 200
+    
+            {
+              "id": 1,
+              "user_id": 3,
+              "title": "服务标题",
+              "service_region": "110000",
+              "price": 150,
+              "max_number_of_services": 3,
+              "detail": "服务的具体信息富文本",
+              "status": 1,
+              "review_status": 2,
+              "updated_at": 1466394027,
+              "service_item": [
+                {
+                  "id": 3,
+                  "type_id": 1,
+                  "type_name": "接车",
+                  "service_id": 1,
+                  "service_direction": "北京车站或机场"
+                }
+              ],
+              "service_scenic": [
+                {
+                  "id": 1,
+                  "scenic_id": 342,
+                  "scenic_name": "清昭陵",
+                  "service_id": 1
+                },
+                {
+                  "id": 3,
+                  "scenic_id": 378,
+                  "scenic_name": "旅顺蛇博物馆",
+                  "service_id": 1
+                }
+              ]
+            }
+
++ Response 404
+
+## 更新服务主体内容 [PUT /v1/service]
+
++ Request (application/json)
+
+    + Attributes
+        + title (string) - 标题
+        + service_region:`110000` (number) - 地区code
+        + price (number) -每日服务价格
+        + `max_number_of_services` (number) - 单次最高服务人数
+        + detail (string) - 富文本的服务详情
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
++ Response 200
+    
+        {
+              "id": 1,
+              "user_id": 3,
+              "title": "服务标题",
+              "service_region": "110000",
+              "price": 150,
+              "max_number_of_services": 3,
+              "detail": "服务的具体信息富文本",
+              "status": 1,
+              "review_status": 2,
+              "updated_at": 1466394027
+        }
+            
+
 # Group 开放api
 
 <a name="region"></a>
