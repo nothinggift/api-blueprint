@@ -673,7 +673,39 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
               "review_status": 2,
               "updated_at": 1466394027
         }
-            
+
+## 将最新版本的服务提交审核 [GET /v1/service/send-to-review]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 204
+
++ Response 500
+
+## 服务上线/下线 [GET /v1/service/switch/{type}]
+
++ Parameters
+
+    + type (string) - 服务切换状态
+        + members
+            + `on`
+            + `off`
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 204
+
++ Response 400
+
++ Response 500
 
 # Group 开放api
 
