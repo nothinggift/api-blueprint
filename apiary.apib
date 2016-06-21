@@ -709,10 +709,202 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 # 服务项目 [/v1/service-items]
 
-## 获取服务项目 [GET /v1/service-item]
++ Attributes
+    + id:5 (number) - 服务id
+    + type_id:1 (number) - 服务类型id
+    + type_name:`住宿` (string) -服务类型名称
+    + service_id:`1` (number) - 服务id
+    + service_direction (string) -服务描述
+
+
+## 获取当前用户所有的服务项目 [GET /v1/service-items]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
 + Response 200
 
+            [
+                {
+                  "id": 3,
+                  "type_id": 1,
+                  "type_name": "接车",
+                  "service_id": 1,
+                  "service_direction": "北京车站或机场"
+                }
+            ]
+            
+## 获取当前用户的单个服务项目 [GET /v1/service-items/{id}]
+
++ Parameters
+
+    + id:3 (number) - 服务项目id
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
++ Response 200
+
+            {
+                "id": 3,
+                "type_id": 1,
+                "type_name": "接车",
+                "service_id": 1,
+                "service_direction": "北京车站或机场"
+            }
+
+## 更新当前用户的一个服务项目 [PUT /v1/service-items/{id}]
+
+服务类型可以进行改动，但正常情境下使用不到，也最好不要使用。
+
++ Parameters
+
+    + id:3 (number) - 服务项目id
+    
++ Request (application/json)
+
+    + Attributes
+        + service_direction (string) -服务描述
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200
+
+            {
+                "id": 3,
+                "type_id": 1,
+                "type_name": "接车",
+                "service_id": 1,
+                "service_direction": "北京车站或机场"
+            }
+            
+## 为当前用户创建一个服务项目 [POST /v1/service-items]
+
++ Request (application/json)
+
+    + Attributes
+        + type_id (number) - 服务类型id
+        + service_direction (string) -服务描述
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200
+
+            {
+                "id": 5,
+                "type_id": 1,
+                "type_name": "接车",
+                "service_id": 1,
+                "service_direction": "北京车站或机场"
+            }
+
+## 删除一个当前用户的服务项目 [DELETE /v1/service-items/{id}]
+
++ Parameters
+
+    + id:3 (number) - 服务项目id
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 204
+
+# 服务景点 [/v1/service-scenics]
+
++ Attributes
+    + id:5 (number) - 服务id
+    + scenic_id:1 (number) - 景点id
+    + scenic_name:`住宿` (string) -景点名称
+    + service_id:`1` (number) - 服务id
+
+
+## 获取当前用户所有的服务景点 [GET /v1/service-scenics]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200
+
+            [
+                {
+                  "id": 1,
+                  "scenic_id": 342,
+                  "scenic_name": "清昭陵",
+                  "service_id": 1
+                }
+            ]
+            
+## 获取当前用户的单个服务景点 [GET /v1/service-scenics/{id}]
+
++ Parameters
+
+    + id:3 (number) - 服务项目id
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
++ Response 200
+
+            {
+              "id": 1,
+              "scenic_id": 342,
+              "scenic_name": "清昭陵",
+              "service_id": 1
+            }
+
+## 为当前用户创建一个服务景点 [POST /v1/service-scenics]
+
++ Request (application/json)
+
+    + Attributes
+        + scenic_id:1 (number) - 景点id
+        + service_id:`1` (number) - 服务id
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200
+
+            {
+              "id": 1,
+              "scenic_id": 342,
+              "scenic_name": "清昭陵",
+              "service_id": 1
+            }
+
+## 删除一个当前用户的服务景点 [DELETE /v1/service-scenics/{id}]
+
++ Parameters
+
+    + id:3 (number) - 服务景点id
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 204
 
 # Group 开放api
 
