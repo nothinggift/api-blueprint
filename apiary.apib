@@ -798,7 +798,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         
             Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
-+ Response 200
++ Response 201
 
             {
                 "id": 5,
@@ -883,7 +883,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         
             Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
-+ Response 200
++ Response 201
 
             {
               "id": 1,
@@ -1310,3 +1310,64 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         },
 
 + Response 404 (application/json)
+
+## 服务类型 [/v1/service-types{?id,name,is_hot,weight,status,parent_id}]
+
++ Attributes
+    + id:5 (number) - 服务类型id
+    + name:`接车` (string) -服务名称
+    + direction (string) -服务类型说明
+    + is_hot (number) -是否热门
+    + weight (number) -权重
+    + status (number) -状态（0:新增未审核;1:正常状态;2:被锁定）
+    + parent_id (number) -父id
+
+#### 搜索所有服务类型 [GET]
+
+
++ Parameters
+    + id (optional,number) ... 银行id
+    + name (optional,string) ... 服务类型名称
+    + is_hot (optional,number) ... 是否热门
+    + weight (optional,number) ... 权重
+    + status (optional,number) ... 状态
+    + parent_id (optional,number) ... 父id
+
+
++ Response 200 (application/json)
+
+            [
+              {
+                "id": 2,
+                "name": "接车",
+                "direction": "用户到达接车地点后，将用户接送到住宿地点，需要写明接车地点和用户需要注意的事项。",
+                "is_hot": 1,
+                "weight": 0,
+                "status": 0,
+                "parent_id": 0
+              },
+              {
+                "id": 3,
+                "name": "住宿",
+                "direction": "",
+                "is_hot": 0,
+                "weight": 0,
+                "status": 0,
+                "parent_id": 0
+              }
+            ]
+
+#### 添加服务类型 [POST]
+
++ Request (application/json)
+
+    + Attributes
+        + name:`行车` (string) -服务名称
+
++ Response 201 (application/json)
+    
+            {
+                "id": 2,
+                "name": "行车",
+                "status": 0,
+            },
