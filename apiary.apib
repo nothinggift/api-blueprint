@@ -1370,4 +1370,23 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                 "id": 2,
                 "name": "行车",
                 "status": 0,
-            },
+            }
+            
+#### 根据名称查找服务类型 [GET /v1/service-type/find{?name}]
+
++ Parameters
+    + name (string) ... 服务类型名称
+    
++ Response 200 (application/json)
+
+          {
+            "id": 2,
+            "name": "接车",
+            "direction": "用户到达接车地点后，将用户接送到住宿地点，需要写明接车地点和用户需要注意的事项。",
+            "is_hot": 1,
+            "weight": 0,
+            "status": 0,
+            "parent_id": 0
+          }
+          
++ Response 404 (application/json)
