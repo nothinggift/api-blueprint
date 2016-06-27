@@ -596,7 +596,14 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + service_item (array) - 服务项目
     + service_scenic (array) - 服务景点
     
-## 获取当前用户的地导服务 [GET /v1/service]
+## 获取当前用户的地导服务 [GET /v1/service{?expand}]
+
++ Parameters
+
+    + expand:`service_item,service_scenic` (string) - 获取服务关联信息如：服务项目，服务景点,多个值之间使用逗号连接
+        + members
+            + `service_item`
+            + `service_scenic`
 
 + Request
 
@@ -1391,7 +1398,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
           
 + Response 404 (application/json)
 
-## 景区 [/v1/scenic{?id,parent_id,name,region_code,introduction}]
+## 景区 [/v1/scenics{?id,parent_id,name,region_code,introduction}]
 
 + Attributes
     + id (number) -景区id
@@ -1446,7 +1453,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
               }
             ]
             
-#### 根据id获取一个景区 [GET /v1/scenic/{id}]
+#### 根据id获取一个景区 [GET /v1/scenics/{id}]
 
 + Parameters
     + id (optional,number) ... 景区id
