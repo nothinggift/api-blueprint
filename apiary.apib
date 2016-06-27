@@ -1515,3 +1515,70 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                 "parent_id": 0
               }
             ]
+            
+## 专题文章 [/v1/articles{?id,title,name,status,weight,created_by,created_at,updated_at,on_homepage}]
+
++ Attributes
+    + id (number) -文章id
+    + title (string) -文章标题
+    + cover (string) -文章封面uri
+    + body (string) -文章内容，html格式
+    + status (number) -文章状态(0:正常;1:热门;2:置顶;7:下线;]
+    + weight (number) -权重，用来作为排序依据
+    + created_by (number) -作者id
+    + created_at (number) -创建时间
+    + updated_at (number) -更新时间
+    + on_homepage (number) -是否推送到首页轮播(0:否;1:是;)
+
+#### 搜索专题文章 [GET]
+
+因为专题文章的内容可能过长，所以在搜索时不会显示body字段
+
++ Parameters
+    + id (optional,number) -文章id
+    + title (optional,string) -文章标题
+    + weight (optional,number) -权重，用来作为排序依据
+    + created_by (optional,number) -作者id
+    + created_at (optional,number) -创建时间
+    + updated_at (optional,number) -更新时间
+    + on_homepage (optional,number) -是否推送到首页轮播(0:否;1:是;)
+    + status (optional,number) -文章状态(0:正常;1:热门;2:置顶;7:下线;]
+
++ Response 200 (application/json)
+    
+            [
+              {
+                "id": 1,
+                "title": "这是一篇测试文章",
+                "cover": "/images/b79ff084-c264-42ac-8692-acb8b50c8e23.jpeg",
+                "status": 0,
+                "created_by": 40,
+                "created_at": 1466996147,
+                "updated_at": 1466996336,
+                "weight": 0,
+                "on_homepage": 1
+              }
+            ]
+            
+            
+#### 根据文章id获取文章内容 [GET /v1/articles/{id}]
+
++ Parameters
+    + id (number) -文章id
+    
++ Response 200 (application/json)
+    
+            {
+                "id": 1,
+                "title": "这是一篇测试文章",
+                "cover": "/images/b79ff084-c264-42ac-8692-acb8b50c8e23.jpeg",
+                "body": "..."
+                "status": 0,
+                "created_by": 40,
+                "created_at": 1466996147,
+                "updated_at": 1466996336,
+                "weight": 0,
+                "on_homepage": 1
+            }
+            
++ Response 404 (application/json)
