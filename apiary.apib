@@ -597,11 +597,18 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + service_item (array) - 服务项目
     + service_scenic (array) - 服务景点
     
-## 获取当前用户的地导服务 [GET /v1/service{?expand}]
+## 获取当前用户的地导服务 [GET /v1/service{?version,expand}]
+
+服务的每次修改都会创建新的版本，使用版本号进行区分。
+版本号设置值为 `head` 代表最新版本,设置为 `current` 代表目前上线的版本
 
 + Parameters
-
-    + expand:`service_item,service_scenic` (string) - 获取服务关联信息如：服务项目，服务景点,多个值之间使用逗号连接
+    + version:`head` (optional,string) - 指定服务的版本
+        + members
+            + `head`
+            + `current`
+            + 1
+    + expand:`service_item,service_scenic` (optional,string) - 获取服务关联信息如：服务项目，服务景点,多个值之间使用逗号连接
         + members
             + `service_item`
             + `service_scenic`
