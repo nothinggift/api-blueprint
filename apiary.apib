@@ -1669,3 +1669,57 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             }
             
 + Response 404 (application/json)
+
+## 搜索服务 [/v1/search/service{?username,title,service_item,service_scenic,begin_date,end_date,region_code}]
+
+服务可关联的expand有：user,item,scenic
+
+#### 根据条件搜索 [GET]
+
+只有当 `begin_date` 与`end_date` 同时存在时，该搜索条件才能成立
+
++ Parameters
+    + username (optional,string) -服务提供者昵称
+    + title (optional,string) -服务标题
+    + service_item:`1,-3` (optional,string) - 需要提供的服务项目id，可筛选多个，id前带-号代表筛选不需要该服务项目的服务
+    + service_scenic (optional,number) -景点id
+    + begin_date:`2016-10-18` (optional,date) -可提供服务的开始时间,必须大于当日日期
+    + end_date:`2016-10-20` (optional,date) -可提供服务的结束时间，必须大于开始时间
+    + region_code (optional,number) -地区代号
+    
++ Response 200 (application/json)
+    
+    
+        [
+          {
+            "id": 2,
+            "user_id": 7,
+            "title": null,
+            "service_region": null,
+            "price": null,
+            "max_number_of_services": null,
+            "count_of_service": 0,
+            "score": 0,
+            "count_of_comment": 0,
+            "status": 0,
+            "version": 1,
+            "review_status": 1,
+            "updated_at": 1467103187,
+            "item": [],
+            "user": {
+              "id": 7,
+              "username": "昵称",
+              "portrait": "/images/F4158D2E-D9E7-4010-A825-DF059C92AF00.jpg",
+              "sex": 1,
+              "birthday": "2016-06-28",
+              "phone": "手机号码",
+              "email": null,
+              "status": 10,
+              "created_at": 1464752609,
+              "updated_at": 1467093848,
+              "profile": null,
+              "region_code": null,
+              "is_service_provider": 2
+            }
+          }
+        ]
