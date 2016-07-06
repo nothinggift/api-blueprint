@@ -1690,33 +1690,110 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
     
         [
-          {
-            "id": 1,
-            "user_id": 6,
-            "username": "昵称",
-            "portrait": "/images/f87609e3-a7c8-4f15-9fde-f7c47cfa20c2.jpg", //头像链接
-            "title": null,
-            "service_region": null,
-            "price": null,
-            "max_number_of_services": null,
-            "detail": null,
-            "score": 0,
-            "status": 0,
-            "review_status": 2,
-            "updated_at": 1467106031,
-            "optional": null,
-            "service_item": [  //服务项
-              {
-                "type_id": 3,
-                "type_name": "门票",
-                "service_direction": "景区入口门票"
-              },
-              {
-                "type_id": 2,
-                "type_name": "住宿",
-                "service_direction": "四星级酒店"
-              },
-            ],
-            "service_scenic": [] //服务景点
-          },
+            {
+              "id": 1,
+              "user_id": 6,
+              "username": "昵称",
+              "portrait": "/images/1f50c1a0-dcf1-47d3-9a7d-07d6db39950f.jpg",
+              "title": "标题",
+              "service_region": "530000",
+              "region_name": "云南省",
+              "region_full_name": "云南省",
+              "price": 300,
+              "max_number_of_services": 3,
+              "detail": "详情",
+              "score": 3.5,
+              "status": 1,
+              "review_status": 0,
+              "updated_at": 1467784142,
+              "service_item": [
+                {
+                  "type_id": 2,
+                  "type_name": "住宿",
+                  "service_direction": "旅店"
+                },
+                ...
+              ],
+              "service_scenic": [
+                {
+                  "scenic_id": 90665,
+                  "scenic_name": "彦吉嘎庙"
+                },
+                ...
+              ]
+            },
+            {
+              "id": 2,
+              "user_id": 8,
+              "username": "昵称",
+              "portrait": "/images/1f50c1a0-dcf1-47d3-9a7d-07d6db39950f.jpg",
+              "title": "标题",
+              "service_region": "530000",
+              "region_name": "云南省",
+              "region_full_name": "云南省",
+              "price": 300,
+              "max_number_of_services": 3,
+              "detail": "详情",
+              "score": 3.5,
+              "status": 1,
+              "review_status": 0,
+              "updated_at": 1467784142,
+              "service_item": [
+                {
+                  "type_id": 2,
+                  "type_name": "住宿",
+                  "service_direction": "旅店"
+                },
+                ...
+              ],
+              "service_scenic": [
+                {
+                  "scenic_id": 90665,
+                  "scenic_name": "彦吉嘎庙"
+                },
+                ...
+              ]
+            },
         ]
+
+#### 根据id搜索单个服务 [GET /v1/search/service/{id}]
+
++ Parameters
+    + id (number) -服务id
+
++ Response 200 (application/json)
+    
+        {
+          "id": 1,
+          "user_id": 6,
+          "username": "昵称",
+          "portrait": "/images/1f50c1a0-dcf1-47d3-9a7d-07d6db39950f.jpg",
+          "title": "标题",
+          "service_region": "530000",
+          "region_name": "云南省",
+          "region_full_name": "云南省",
+          "price": 300,
+          "max_number_of_services": 3,
+          "detail": "详情",
+          "score": 3.5,
+          "status": 1,
+          "review_status": 0,
+          "updated_at": 1467784142,
+          "service_item": [
+            {
+              "type_id": 2,
+              "type_name": "住宿",
+              "service_direction": "旅店"
+            },
+            ...
+          ],
+          "service_scenic": [
+            {
+              "scenic_id": 90665,
+              "scenic_name": "彦吉嘎庙"
+            },
+            ...
+          ]
+        }
+
++ Response 404 (application/json)
