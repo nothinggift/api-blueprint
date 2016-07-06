@@ -1406,7 +1406,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Response 404 (application/json)
 
-## 服务类型 [/v1/service-types{?id,name,is_hot,weight,status,parent_id}]
+## 服务类型 [/v1/service-types{?id,name,is_hot,weight,parent_id}]
 
 + Attributes
     + id:5 (number) - 服务类型id
@@ -1419,13 +1419,13 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 #### 搜索所有服务类型 [GET]
 
+不再支持status参数，只有正常状态的类型才能被搜索。
 
 + Parameters
     + id (optional,number) ... 银行id
     + name (optional,string) ... 服务类型名称
     + is_hot (optional,number) ... 是否热门
     + weight (optional,number) ... 权重
-    + status (optional,number) ... 状态
     + parent_id (optional,number) ... 父id
 
 
