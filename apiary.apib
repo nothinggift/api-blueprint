@@ -991,9 +991,11 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             }
 
 
-# 服务锁定日期 [/v1/locked-service-date{?beginDate,endDate}]
+# 服务锁定日期 [/v1/locked-service-date{?beginDate,endDate,id}]
 
 ## 获取被锁定的日期 [GET]
+
+该接口不需要身份验证，当提供身份验证并没有提供服务id时，将自动寻找用户本人的服务锁定日期。
 
 获取从开始日期到结束日期之间所有锁定的日期，如果没有设置结束日期，则获取从开始日期之后所有的锁定日期。
 
@@ -1001,6 +1003,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
     + beginDate:`1990-10-11` (date) - 开始日期
     + endDate:`2000-04-01` (optional,date) -结束日期
+    + id (optional,number) -服务id
     
 + Request
 
