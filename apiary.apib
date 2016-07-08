@@ -1672,7 +1672,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             
 + Response 404 (application/json)
 
-## 搜索服务 [/v1/search/service{?username,title,service_item,service_scenic,begin_date,end_date,region_code}]
+## 搜索服务 [/v1/search/service{?username,title,service_item,service_scenic,begin_date,end_date,region_code,min_price,max_price}]
 
 #### 根据条件搜索 [GET]
 
@@ -1686,6 +1686,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + begin_date:`2016-10-18` (optional,date) -可提供服务的开始时间,必须大于当日日期
     + end_date:`2016-10-20` (optional,date) -可提供服务的结束时间，必须大于开始时间
     + region_code (optional,number) -地区代号
+    + min_price (optional,number) - 最低价格
+    + max_price (optional,number) - 最高价格
     
 + Response 200 (application/json)
     
