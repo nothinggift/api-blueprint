@@ -549,6 +549,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 # 地导账户 [/v1/account]
 
+地导账户在用户的地导申请通过后会自动创建，用来记录地导的服务收益，账户目前只提供两个功能：浏览和取现。
+
 + Attributes
     + user_id (number) - 用户id
     + balance (number) - 账户余额
@@ -579,6 +581,11 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         }
     
 + Response 404
+
+
+## 获取hash-key [GET /v1/hash-key]
+
++ Response 204
 
 # 地导服务 [/v1/service]
 
