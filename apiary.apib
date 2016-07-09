@@ -631,7 +631,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 + Response 400
 
 
-# 银行卡管理 [/v1/bank-cards/{id}]
+# 银行卡管理 [/v1/bank-cards]
 
 银行卡可用的expand有 user 和 bank，分别代表用户数据和银行数据
 
@@ -667,7 +667,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         }
 
 
-## 根据id获取一张银行卡 [GET]
+## 根据id获取一张银行卡 [GET /v1/bank-cards/id]
 
 + Parameters
     + id (number) - 银行卡id
@@ -700,13 +700,13 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
     + Headers
         
-        Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
+            Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
     + Body
 
-        {
-            bank_card:'6222020903001483077',
-            bank_id:3
-        }
+            {
+                bank_card:'6222020903001483077',
+                bank_id:3
+            }
 
 + Response 201
 
@@ -716,7 +716,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
     + Headers
         
-        Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
+            Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
 
 + Response 204
 
