@@ -551,6 +551,22 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 地导账户在用户的地导申请通过后会自动创建，用来记录地导的服务收益，账户目前只提供两个功能：浏览和取现。
 
+取现流程：
+1 用户设置取现密码
+2 用户添加银行卡
+3 发起取现申请（需使用取现密码并选定一张银行卡）
+4 取现申请通过，由后台人工完成转账。
+
+取现密码是用户资金保障最关键的地方，需要经过多次加密，设置取现密码流程：
+
+1 用户输入两次6位数字密码，并验证一致
+2 将用户密码使用 `sha1` 加密,得到一个40位的字符串
+3 调用 **获取hash-key** 接口，获取到一个20位的随机字符串 **（注意：该key有效时间仅有10秒，开发期间延长为60秒）**
+4 将加密后的用户密码使用获取到的key再次加密，加密方式为使用 `BLOWFISH` 算法以 `ECB` 模式进行加密
+5 将加密后的数据使用 `base64` 编码，然后通过 **设置取现密码接口** 传输到服务器。
+
+当用户在取现时，同样需要输入该密码，加密方式相同。
+
 + Attributes
     + user_id (number) - 用户id
     + balance (number) - 账户余额
@@ -558,12 +574,6 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + status (number) -账户状态(0:正常)
 
 ## 获取地导账户信息 [GET /v1/account]
-
-
-
-在用户发起申请之后，由管理人员在后台进行审核，当审核通过时，系统自动为地导创建相应账户。
-
-
     
 + Request (application/json)
 
@@ -585,7 +595,40 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 ## 获取hash-key [GET /v1/hash-key]
 
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200
+    
+            {
+                key:'f29jg720jd07gj29a7gg',
+                expires:'2016-07-10 13:12:01'
+            }
+
+## 设置取现密码 [POST /v1/account/set-withdrawal-password]
+
+接口可能返回的错误：
+
+* `403`：*数据已存在，没有权限更改* 取现密码已存在，不能更改。
+* `403`：*非法数据* 没有调用hash-key接口，或取到的hash-key已经过期。
+* `400`：*未找到数据* 没有或取到'withdrawal_password'。
+* `400`：*数据格式错误* 取到了'withdrawal_password'，但是密码加密方式不对，或者没有经过base64编码。
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
+            withdrawal_password:'加密密码'
+
 + Response 204
+
++ Response 403
+    
++ Response 400
 
 # 地导服务 [/v1/service]
 
@@ -597,7 +640,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + price (number) -每日服务价格
     + `max_number_of_services` (number) - 单次最高服务人数
     + detail (string) - 富文本的服务详情
-    + score (number) -评分
+    + score (number) - 评分
     + status (number) - 状态（0:尚未提交审核过，没有能够上线的版本;1:在线状态;2:离线状态;3:被管理人员锁定）
     + review_status (number) - 审核状态（0:没有可以提交审核的版本,1:有更新的版本，但还没有提交审核;2:正在审核4:审核失败）
     + updated_at:1466394027 (number) - 更新时间
