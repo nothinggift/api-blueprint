@@ -630,6 +630,97 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 400
 
+
+# 银行卡管理 [/v1/bank-cards/{id}]
+
+银行卡可用的expand有 user 和 bank，分别代表用户数据和银行数据
+
++ Attributes
+    + id (number) - id
+    + bank_card (string) - 银行卡号
+    + bank_id (number) - 所属银行id，例如民生银行，id为1
+    + user_id (number) - 用户id
+    + status (number) - 状态(1:正常)
+    + created_at (number) - 创建时间
+    + updated_at (number) - 更新时间
+
+## 获取银行卡列表 [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
+
++ Response 200
+
+        {
+            [
+                id:1;
+                bank_card:'6222020903001483077',
+                bank_id:3,
+                user_id:79,
+                status:1
+                created_at:'1468058435',
+                updated_at:'1468058435'
+            ]
+        }
+
+
+## 根据id获取一张银行卡 [GET]
+
++ Parameters
+    + id (number) - 银行卡id
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
+
++ Response 200
+        
+        [
+            id:1;
+            bank_card:'6222020903001483077',
+            bank_id:3,
+            user_id:79,
+            status:1
+            created_at:'1468058435',
+            updated_at:'1468058435'
+        ]
+
++ Response 404
+
+## 添加一张银行卡 [POST]
+
+如果用户尚未设置取现密码，则会返回403错误
+
++ Request (application/json)
+
+    + Headers
+        
+        Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
+    + Body
+
+        {
+            bank_card:'6222020903001483077',
+            bank_id:3
+        }
+
++ Response 201
+
+## 删除一张银行卡 [DELETE]
+
++ Request (application/json)
+
+    + Headers
+        
+        Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
+
++ Response 204
+
+
 # 地导服务 [/v1/service]
 
 + Attributes
