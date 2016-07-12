@@ -1958,8 +1958,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 + Attributes
     + id (number) -id
     + user_id (number) -用户id
-    + device_token (string) -ios系统独有的device_token
-    + registration_id (string) -极光推送生成的device_id
+    + `device_token` (string) -ios系统独有的device_token
+    + `registration_id` (string) -极光推送生成的device_id
     + system_type (string) -系统类型，如：IOS
     + device_model (string) -设备名称，如：iphone5
     + device_id (string) -由apicloud生成的设备标识
@@ -1975,12 +1975,13 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 registration_id为必填项，其他都会可选项。
 
-+ Attributes
-    + device_token (optional,string) -ios系统独有的device_token
-    + registration_id (string) -极光推送生成的device_id
-    + system_type (optional,string) -系统类型，如：IOS
-    + device_model (optional,string) -设备名称，如：iphone5
-    + device_id (optional,string) -由apicloud生成的设备标识
++ Request (application/json)
+  + Attributes
+      + `device_token` (optional,string) -ios系统独有的device_token
+      + `registration_id` (string) -极光推送生成的device_id
+      + system_type (optional,string) -系统类型，如：IOS
+      + device_model (optional,string) -设备名称，如：iphone5
+      + device_id (optional,string) -由apicloud生成的设备标识
 
 + Response 200 (application/json)
 
