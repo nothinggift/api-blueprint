@@ -717,7 +717,10 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Response 201
 
-## 删除一张银行卡 [DELETE]
+## 删除一张银行卡 [DELETE /v1/bank-cards/id]
+
++ Parameters
+    + id (number) - 银行卡id
 
 + Request (application/json)
 
@@ -1948,3 +1951,37 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
         }
 
 + Response 404 (application/json)
+
+
+## 设备信息  [/v1/device]
+
++ Attributes
+    + id (number) -id
+    + user_id (number) -用户id
+    + device_token (string) -ios系统独有的device_token
+    + registration_id (string) -极光推送生成的device_id
+    + system_type (string) -系统类型，如：IOS
+    + device_model (string) -设备名称，如：iphone5
+    + device_id (string) -由apicloud生成的设备标识
+    + created_at (number) -创建时间
+    + updated_at (number) -更新时间
+
+
+每当app启动时，都需要获取相应的数据信息，并通过下方的api上传到服务器，该数据除用于统计外，最重要的用途为推送信息时使用。
+
+#### 上传设备信息 [POST /v1/device]
+
+当带有身份信息使用该接口时，会记录用户id，否则会记为匿名。
+
+registration_id为必填项，其他都会可选项。
+
++ Attributes
+    + device_token (optional,string) -ios系统独有的device_token
+    + registration_id (string) -极光推送生成的device_id
+    + system_type (optional,string) -系统类型，如：IOS
+    + device_model (optional,string) -设备名称，如：iphone5
+    + device_id (optional,string) -由apicloud生成的设备标识
+
++ Response 200 (application/json)
+
+
