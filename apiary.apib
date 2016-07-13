@@ -731,6 +731,74 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 + Response 204
 
 
+# 取现申请 [/v1/encashment-records]
+
++ Attributes
+    + id (number) - id
+    + card_id (number) - 银行卡id
+    + user_id (number) - 用户id
+    + amount (number) - 取现金额（整数）
+    + status (number) - 状态（0：待处理，1：已处理，2：已驳回）
+    + transacter (number) - 处理人id
+    + transacted_at (number) - 处理时间
+    + transaction_number (string) - 转账单号
+    + created_at (number) - 创建时间
+    + updated_at (number) - 更新时间
+
+## 查看自己的取现记录 [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
+
++ Response 200
+
+      [
+        {
+          "id":"1",
+          "card_id":"3",
+          "user_id":"5",
+          "amount":"300",
+          "status":"2",
+          "transacter":"5",
+          "transacted_at":"时间戳",
+          "transaction_number":null,
+          "created_at":"时间戳",
+          "updated_at":"时间戳"
+        }
+      ]
+
+
+## 创建一个取现申请 [POST]
+
++ Request (application/json)
+    
+    + Attributes
+      + card_id (number) - 银行卡id
+      + amount (number) - 取现金额（整数）
+
+    + Headers
+        
+            Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
+
++ Response 201
+
+      {
+        "id":"1",
+        "card_id":"3",
+        "user_id":"5",
+        "amount":"300",
+        "status":"2",
+        "transacter":"5",
+        "transacted_at":"时间戳",
+        "transaction_number":null,
+        "created_at":"时间戳",
+        "updated_at":"时间戳"
+      }
+      
+
 # 地导服务 [/v1/service]
 
 + Attributes
