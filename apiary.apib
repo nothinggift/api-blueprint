@@ -671,9 +671,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             Authorization: 'Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178',
     + Body
         
-        {
-            withdrawal_password:'加密密码'
-        }
+            {
+                withdrawal_password:'加密密码'
+            }
 
 + Response 204
 
@@ -799,29 +799,32 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Response 200
 
-      [
-        {
-          "id":"1",
-          "card_id":"3",
-          "user_id":"5",
-          "amount":"300",
-          "status":"2",
-          "transacter":"5",
-          "transacted_at":"时间戳",
-          "transaction_number":null,
-          "created_at":"时间戳",
-          "updated_at":"时间戳"
-        }
-      ]
+        [
+            {
+              "id":"1",
+              "card_id":"3",
+              "user_id":"5",
+              "amount":"300",
+              "status":"2",
+              "transacter":"5",
+              "transacted_at":"时间戳",
+              "transaction_number":null,
+              "created_at":"时间戳",
+              "updated_at":"时间戳"
+            }
+        ]
 
 
 ## 创建一个取现申请 [POST]
 
+使用该api必须附带取现密码，密码加密方式同设置取现密码方式
+
 + Request (application/json)
     
     + Attributes
-      + card_id (number) - 银行卡id
-      + amount (number) - 取现金额（整数）
+        + card_id (number) - 银行卡id
+        + amount (number) - 取现金额（整数）
+        + withdrawal_password (string) -取现密码（加密后）
 
     + Headers
         
@@ -829,18 +832,18 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Response 201
 
-      {
-        "id":"1",
-        "card_id":"3",
-        "user_id":"5",
-        "amount":"300",
-        "status":"2",
-        "transacter":"5",
-        "transacted_at":"时间戳",
-        "transaction_number":null,
-        "created_at":"时间戳",
-        "updated_at":"时间戳"
-      }
+        {
+            "id":"1",
+            "card_id":"3",
+            "user_id":"5",
+            "amount":"300",
+            "status":"2",
+            "transacter":"5",
+            "transacted_at":"时间戳",
+            "transaction_number":null,
+            "created_at":"时间戳",
+            "updated_at":"时间戳"
+        }
       
 
 # 地导服务 [/v1/service]
@@ -2067,6 +2070,8 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 ## 设备信息  [/v1/device]
 
+每当app启动时，都需要获取相应的数据信息，并通过下方的api上传到服务器，该数据除用于统计外，最重要的用途为推送信息时使用。
+
 + Attributes
     + id (number) -id
     + user_id (number) -用户id
@@ -2078,9 +2083,6 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + system_version (string) -系统版本号
     + created_at (number) -创建时间
     + updated_at (number) -更新时间
-
-
-每当app启动时，都需要获取相应的数据信息，并通过下方的api上传到服务器，该数据除用于统计外，最重要的用途为推送信息时使用。
 
 #### 上传设备信息 [POST /v1/device]
 
