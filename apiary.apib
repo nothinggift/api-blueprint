@@ -262,6 +262,34 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + `is_service_provider` (number) -用户是否为服务者(0:否,1:审核中;2:是)
         
 
+## 搜索用户 [GET /v1/users]
+
+根据搜索条件搜索用户，不需要登录验证，不显示敏感信息
+
++ Parameters
+
+    + id:1 (number) - 用户id，搜索多个id用英文逗号隔开.
+    + username (string) - 用户昵称
+    + sex (string) -用户性别
+    + region_code (string) -用户所在区域
+    + `is_service_provider` (number) -用户是否为服务者
+
++ Response 200 (application/json)
+
+        [
+            {
+              "id": 3,
+              "username": null,
+              "portrait": null,
+              "sex": null,
+              "birthday": null,
+              "profile":null,
+              "region_code":null,
+              "status": 10,
+              "is_service_provider":0
+            }
+        ]
+
 
 ## 获取用户自身信息 [GET /v1/user/self]
 
@@ -309,9 +337,6 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Request (application/json)
     
-    + Headers
-        
-            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
 + Response 200 (application/json)
 
@@ -408,7 +433,26 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                     "message": "Sex是无效的。"
                 }
             ]
-            
+        
+
+# 在线聊天 [/v1/im]
+
+#### 获取用户身份验证码sig [GET /v1/im/sig]
+
+身份验证码的有效期为180天
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200 (application/json)
+    
+        {
+            sig:"eJxljltPgzAAhd-5FQ2vXlKgncQ3Bl4YsIBz2fClIaWUalYYlDk0-ncdLrGJ5-X7cs75NAAA5nO8ui4obQapiBpbZoJbYELz8g*2rShJoYjTlf8gO7aiY6SoFOsmaGGMbQh1R5RMKlGJs1EzyY9C8quZ5vTlG5mGfkvQT4NlQ4R0RfAJJne5H2aB2vbWTbyfv25zTseMPubjEK03Monyd4W8xRLSeJnvYppmYe2lH-XgRTUNLzpnU4RVMt*vAz9t-EV0uM*eJOblg4fUSwAbbVKJHTsfmrkYudDVPx9Y14tGToINLWzZDjzFNL6Mb3g3Xyc_"
+        }
+
 # 地导 [/v1/service-providers]
 <a name="service_provider"></a>
 
@@ -2054,3 +2098,5 @@ registration_id为必填项，其他都会可选项。
       + system_version (optional,string) -系统版本号
 
 + Response 200 (application/json)
+
+
