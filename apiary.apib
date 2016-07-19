@@ -262,17 +262,17 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + `is_service_provider` (number) -用户是否为服务者(0:否,1:审核中;2:是)
         
 
-## 搜索用户 [GET /v1/users]
+## 搜索用户 [GET /v1/users{?id,username,sex,region_code,is_service_provider}]
 
 根据搜索条件搜索用户，不需要登录验证，不显示敏感信息
 
 + Parameters
 
-    + id:1 (number) - 用户id，搜索多个id用英文逗号隔开.
-    + username (string) - 用户昵称
-    + sex (string) -用户性别
-    + region_code (string) -用户所在区域
-    + `is_service_provider` (number) -用户是否为服务者
+    + id:1 (optional,number) - 用户id，搜索多个id用英文逗号隔开.
+    + username (optional,string) - 用户昵称
+    + sex (optional,string) -用户性别
+    + region_code (optional,string) -用户所在区域
+    + `is_service_provider` (optional,number) -用户是否为服务者
 
 + Response 200 (application/json)
 
@@ -1365,7 +1365,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             ...
         ]
 
-## 根据id获取当前用户的一个收藏 [GET]
+## 根据id获取当前用户的一个收藏 [GET /v1/collects/{id}]
 
 + Parameters
     + id (number) -收藏id
@@ -1408,7 +1408,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             "created_at":"1468919401"
         }
 
-## 删除当前用户的一个收藏 [DELETE]
+## 删除当前用户的一个收藏 [DELETE /v1/collects/{id}]
 
 + Parameters
     + id (number) -收藏id
@@ -2187,5 +2187,3 @@ registration_id为必填项，其他都会可选项。
       + system_version (optional,string) -系统版本号
 
 + Response 200 (application/json)
-
-
