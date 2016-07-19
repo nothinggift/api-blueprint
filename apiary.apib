@@ -1335,7 +1335,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 + Response 400
 
 
-# 用户收藏 [/v1/collects{/id}]
+# 用户收藏 [/v1/collects]
 
 + Attributes
     + id (number) -收藏id
@@ -1344,7 +1344,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + version (number) -服务版本
     + created_at (string) -收藏时间（时间戳格式）
 
-## 获取用户收藏列表 [GET]
+## 获取当前用户收藏列表 [GET]
 
 + Request
 
@@ -1365,7 +1365,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             ...
         ]
 
-## 根据id获取一个收藏 [GET]
+## 根据id获取当前用户的一个收藏 [GET]
 
 + Parameters
     + id (number) -收藏id
@@ -1408,7 +1408,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             "created_at":"1468919401"
         }
 
-## 删除一个收藏 [DELETE]
+## 删除当前用户的一个收藏 [DELETE]
 
 + Parameters
     + id (number) -收藏id
