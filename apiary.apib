@@ -1335,6 +1335,93 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 + Response 400
 
 
+# 用户收藏 [/v1/collects{/id}]
+
++ Attributes
+    + id (number) -收藏id
+    + user_id (number) -用户id
+    + service_id (number) -服务id
+    + version (number) -服务版本
+    + created_at (string) -收藏时间（时间戳格式）
+
+## 获取用户收藏列表 [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200
+    
+        [
+            {
+                "id":1,
+                "user_id":1,
+                "service_id":79,
+                "version":5,
+                "created_at":"1468919401"
+            }
+            ...
+        ]
+
+## 根据id获取一个收藏 [GET]
+
++ Parameters
+    + id (number) -收藏id
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200
+    
+        {
+            "id":1,
+            "user_id":1,
+            "service_id":79,
+            "version":5,
+            "created_at":"1468919401"
+        }
+
+## 添加一个收藏 [POST]
+
++ Attributes
+    + service_id (number) -服务id
+    + version (number) -服务版本
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 201
+    
+        {
+            "id":1,
+            "user_id":1,
+            "service_id":79,
+            "version":5,
+            "created_at":"1468919401"
+        }
+
+## 删除一个收藏 [DELETE]
+
++ Parameters
+    + id (number) -收藏id
+    
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 204
+
+
 # Group 开放api
 
 <a name="region"></a>
