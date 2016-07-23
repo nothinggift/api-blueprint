@@ -1422,11 +1422,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 + Response 204
 
 
-# Group 开放api
-
-<a name="region"></a>
-
-## 地区 [/v1/region]
+# 开放api:地区 [/v1/region]
 
 + Model(application/json)
 
@@ -1474,7 +1470,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             + code:110103 (number) -地区标识
             + level:2 (number) -地区的层级，省为1
     
-### 获取所有地区数据 [GET /v1/region/all{?type}]
+## 获取所有地区数据 [GET /v1/region/all{?type}]
 
 + Parameters
 
@@ -1580,7 +1576,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 + Response 404 (application/json)
 
 
-### 获取单个地区数据 [GET /v1/regions/{code}]
+## 获取单个地区数据 [GET /v1/regions/{code}]
 
 + Parameters
 
@@ -1592,7 +1588,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 404 (application/json)
 
-### 获取一个地区的父地区 [GET /v1/region/parent{?code}]
+## 获取一个地区的父地区 [GET /v1/region/parent{?code}]
 
 + Parameters
 
@@ -1604,7 +1600,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 404 (application/json)
 
-### 获取一个地区的子地区 [GET /v1/region/children{?code}]
+## 获取一个地区的子地区 [GET /v1/region/children{?code}]
 
 + Parameters
 
@@ -1643,9 +1639,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 404 (application/json)
 
-### 搜索地区数据 [/v1/regions{?id,name,full_name,pinyin,acronym,parent_id,code,level,is_hot,is_city}]
+## 搜索地区数据 [/v1/regions{?id,name,full_name,pinyin,acronym,parent_id,code,level,is_hot,is_city}]
 
-#### 条件搜索 [GET]
+## 条件搜索 [GET]
 
 根据地区的各种属性搜索相应的数据
     
@@ -1706,7 +1702,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                 ...
             ]
 
-## 银行 [/v1/goods]
+# 开放api:银行 [/v1/goods]
 
 + Attributes
     + id:5 (number) -银行id
@@ -1714,7 +1710,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + code (string) -银行支付代码，暂无用
     + icon (string) -银行图标
 
-#### 搜索银行数据 [GET /v1/banks{?id,name,code}]
+## 搜索银行数据 [GET /v1/banks{?id,name,code}]
 
 + Attributes
     + id:5 (number) -银行id
@@ -1743,7 +1739,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             }
         ]
 
-#### 获取单个银行数据 [GET /v1/banks/{id}]
+## 获取单个银行数据 [GET /v1/banks/{id}]
 
 + Parameters
     + id (optional,number) ... 银行id
@@ -1759,7 +1755,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Response 404 (application/json)
 
-## 服务类型 [/v1/service-types{?id,name,is_hot,weight,parent_id,scenic_id,region_code}]
+# 开放api:服务类型 [/v1/service-types{?id,name,is_hot,weight,parent_id,scenic_id,region_code}]
 
 + Attributes
     + id:5 (number) - 服务类型id
@@ -1770,7 +1766,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + status (number) -状态（0:新增未审核;1:正常状态;2:被锁定）
     + parent_id (number) -父id
 
-#### 搜索所有服务类型 [GET]
+## 搜索所有服务类型 [GET]
 
 不再支持status参数，只有正常状态的类型才能被搜索。
 
@@ -1807,7 +1803,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
               }
             ]
 
-#### 添加服务类型 [POST]
+## 添加服务类型 [POST]
 
 + Request (application/json)
 
@@ -1822,7 +1818,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
                 "status": 0,
             }
             
-#### 根据名称查找服务类型 [GET /v1/service-type/find{?name}]
+## 根据名称查找服务类型 [GET /v1/service-type/find{?name}]
 
 + Parameters
     + name (string) ... 服务类型名称
@@ -1841,7 +1837,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
           
 + Response 404 (application/json)
 
-## 景区 [/v1/scenics{?id,parent_id,name,region_code,introduction}]
+# 开放api:景区 [/v1/scenics{?id,parent_id,name,region_code,introduction}]
 
 + Attributes
     + id (number) -景区id
@@ -1857,7 +1853,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + parent_id (number) -父景区id
     + weight (number) -权重,景区排序条件，数字越大排序越靠前
 
-#### 搜索景区数据 [GET]
+## 搜索景区数据 [GET]
 
 + Parameters
     + id (optional,number) ... 景区id
@@ -1897,7 +1893,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
               }
             ]
             
-#### 根据id获取一个景区 [GET /v1/scenics/{id}]
+## 根据id获取一个景区 [GET /v1/scenics/{id}]
 
 + Parameters
     + id (optional,number) ... 景区id
@@ -1920,7 +1916,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 + Response 404 (application/json)
 
-#### 根据地区code查询附近景区 [GET /v1/scenic/find-by-region{?code}]
+## 根据地区code查询附近景区 [GET /v1/scenic/find-by-region{?code}]
 
 如果查询地区不是一个城市，就会查询该地区所属城市的所有景区并排在该地景区之后
 
@@ -1958,7 +1954,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
               }
             ]
             
-## 专题文章 [/v1/articles{?id,title,status,weight,created_by,created_at,updated_at,on_homepage}]
+# 开放api:专题文章 [/v1/articles{?id,title,status,weight,created_by,created_at,updated_at,on_homepage}]
 
 + Attributes
     + id (number) -文章id
@@ -1972,7 +1968,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + updated_at (number) -更新时间
     + on_homepage (number) -是否推送到首页轮播(0:否;1:是;)
 
-#### 搜索专题文章 [GET]
+## 搜索专题文章 [GET]
 
 因为专题文章的内容可能过长，所以在搜索时不会显示body字段
 
@@ -2003,7 +1999,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             ]
             
             
-#### 根据文章id获取文章内容 [GET /v1/articles/{id}]
+## 根据文章id获取文章内容 [GET /v1/articles/{id}]
 
 + Parameters
     + id (number) -文章id
@@ -2025,9 +2021,9 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             
 + Response 404 (application/json)
 
-## 搜索服务 [/v1/search/service{?username,title,service_item,service_scenic,begin_date,end_date,region_code,min_price,max_price}]
+# 开放api:搜索服务 [/v1/search/service{?username,title,service_item,service_scenic,begin_date,end_date,region_code,min_price,max_price}]
 
-#### 根据条件搜索 [GET]
+## 根据条件搜索 [GET]
 
 当按照服务时间进行搜索时， `begin_date` 与`end_date` 必须同时存在，该搜索条件才能成立
 
@@ -2112,7 +2108,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
             },
         ]
 
-#### 根据id搜索单个服务 [GET /v1/search/service/{id}]
+## 根据id搜索单个服务 [GET /v1/search/service/{id}]
 
 + Parameters
     + id (number) -服务id
@@ -2155,7 +2151,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 + Response 404 (application/json)
 
 
-## 设备信息  [/v1/device]
+# 开放api:设备信息  [/v1/device]
 
 每当app启动时，都需要获取相应的数据信息，并通过下方的api上传到服务器，该数据除用于统计外，最重要的用途为推送信息时使用。
 
@@ -2171,7 +2167,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + created_at (number) -创建时间
     + updated_at (number) -更新时间
 
-#### 上传设备信息 [POST /v1/device]
+## 上传设备信息 [POST /v1/device]
 
 当带有身份信息使用该接口时，会记录用户id，否则会记为匿名。
 
@@ -2187,3 +2183,37 @@ registration_id为必填项，其他都会可选项。
       + system_version (optional,string) -系统版本号
 
 + Response 200 (application/json)
+
+
+# 开放api:文件上传
+
+图片文件在上传时会自动进行压缩，最大为1920x1080，动态gif图片会失去动画效果
+
+## 文件上传 [POST /v1/public/upload]
+
++ Request (application/json)
+
+        {
+            "file"=>"上传的文件",
+        }
+
++ Response 200 (application/json)
+
+        {
+            "code": "OK",
+            "mimeType": "image/jpeg",
+            "dir": "/images",
+            "message": "OK",
+            "uri": "/images/cc70dc38-40ff-4a6a-a073-e5f49c16d9fe.jpeg",
+            "url": "http://lvyou.image.alimmdn.com/images/cc70dc38-40ff-4a6a-a073-e5f49c16d9fe.jpeg",
+            "isImage": true,
+            "fileSize": "114584",
+            "requestId": "C0ziyK7Z4rRd5nNjNfr",
+            "name": "cc70dc38-40ff-4a6a-a073-e5f49c16d9fe.jpeg",
+            "eTag": "0C40A13815323D1D7DBE35D8B8D3C186",
+            "fileModified": 1469291068659,
+            "fileId": "0156-18927cd2-8b7a0470-560da27c-3be0",
+            "isSuccess": true
+        }
+
++ Response 400 (application/json)
