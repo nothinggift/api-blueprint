@@ -1424,20 +1424,6 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 # 开放api:地区 [/v1/region]
 
-+ Model(application/json)
-
-        {
-          "id": 44,
-          "name": "石家庄市",
-          "full_name": "河北省 石家庄市",
-          "pinyin": "ShiJiaZhuangShi",
-          "acronym": "sjzs",
-          "parent_id": 43,
-          "code": "130100",
-          "level":2,
-          "is_city":1,
-          "is_hot":0
-        }
     
 + Attributes
     + id:5 (number) -地区id
@@ -1584,7 +1570,18 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 200
 
-    [地区][]
+        {
+          "id": 44,
+          "name": "石家庄市",
+          "full_name": "河北省 石家庄市",
+          "pinyin": "ShiJiaZhuangShi",
+          "acronym": "sjzs",
+          "parent_id": 43,
+          "code": "130100",
+          "level":2,
+          "is_city":1,
+          "is_hot":0
+        }
     
 + Response 404 (application/json)
 
@@ -1596,7 +1593,18 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 200
 
-    [地区][]
+        {
+          "id": 44,
+          "name": "石家庄市",
+          "full_name": "河北省 石家庄市",
+          "pinyin": "ShiJiaZhuangShi",
+          "acronym": "sjzs",
+          "parent_id": 43,
+          "code": "130100",
+          "level":2,
+          "is_city":1,
+          "is_hot":0
+        }
     
 + Response 404 (application/json)
 
@@ -1639,9 +1647,7 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     
 + Response 404 (application/json)
 
-## 搜索地区数据 [/v1/regions{?id,name,full_name,pinyin,acronym,parent_id,code,level,is_hot,is_city}]
-
-## 条件搜索 [GET]
+## 搜索地区数据 [GET /v1/regions{?id,name,full_name,pinyin,acronym,parent_id,code,level,is_hot,is_city}]
 
 根据地区的各种属性搜索相应的数据
     
