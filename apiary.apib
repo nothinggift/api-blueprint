@@ -1478,21 +1478,22 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 ## 创建订单 [POST]
 
++ Attributes
+    + service_id (number) -服务id
+    + inception (string) -出发地code，6位数字
+    + need_insurance (number) -是否需要保险（1是，0否）
+    + insurance_id (number) -保险id，如需要保险则必填
+    + begin_date:`2016-05-24` (string) -服务开始日期
+    + end_date:`2016-05-25` (string) -服务结束日期
+    + `number_of_adults` (number) -成人人数
+    + `number_of_children` (number) -儿童人数
+        
 + Request
 
     + Headers
         
             Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
             
-    + Attributes
-        + service_id (number) -服务id
-        + inception (string) -出发地code，6位数字
-        + need_insurance (number) -是否需要保险（1是，0否）
-        + insurance_id (number) -保险id，如需要保险则必填
-        + begin_date:`2016-05-24` (string) -服务开始日期
-        + end_date:`2016-05-25` (string) -服务结束日期
-        + `number_of_adults` (number) -成人人数
-        + `number_of_children` (number) -儿童人数
 
 + Response 201
 
@@ -1586,6 +1587,142 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
           "created_at": 1469528026,
           "updated_at": 1469528026
         }
+
+# 投保人管理  [/v1/insurance-beneficiaries]
+
+投保人是订单投保时的游客信息，是办理保险业务必需的用户数据。
+
+一个用户可以有多个投保人，一个订单可以使用其中的多个投保人。
+
++ Attributes
+    + id:5 (number) -id
+    + user_id (number) - 用户id
+    + real_name (string) - 投保人真实姓名
+    + id_card_number (string) -身份证号
+    + phone (string) -手机号码（选填项）
+    + created_at (string) -创建时间
+
+## 投保人列表 [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
++ Response 200
+    
+        [
+            {
+                "id":1,
+                "user_id":8,
+                "real_name":"张三",
+                "id_card_number":"130103199603034950",
+                "phone":null,
+                "created_at":"1469602217"
+            }
+        ]
+
+## 创建投保人 [POST]
+
++ Attributes
+    + real_name (string) - 投保人真实姓名
+    + id_card_number (string) -身份证号
+    + phone (optional,string) -手机号码（选填项）
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 201
+    
+        {
+            "id":1,
+            "user_id":8,
+            "real_name":"张三",
+            "id_card_number":"130103199603034950",
+            "phone":null,
+            "created_at":"1469602217"
+        }
+
+## 删除投保人 [DELETE /v1/insurance-beneficiaries/{id}]
+
++ Parameters
+    + id (number) -id
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 204
+
+
+# 订单投保人 [/v1/order-to-insurances{?order_id,insurance_beneficiary_id}]
+
++ Attributes
+    + order_id (number) -订单id
+    + insurance_beneficiary_id (number) -投保人id
+    + created_at (string) -创建时间
+
+## 订单投保人列表 [GET]
+
++ Parameters
+    + order_id (number) -订单id
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200
+        
+        [
+            {
+                "order_id":"14602886086397918",
+                "insurance_beneficiary_id":"1",
+                "created_at":"1469602217"
+            }
+        ]
+
+## 为订单添加一个投保人 [POST]
+
++ Parameters
+    + order_id (number) -订单id
+    + insurance_beneficiary_id (number) -投保人id
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 201
+
+        [
+            {
+                "order_id":"14602886086397918",
+                "insurance_beneficiary_id":"1",
+                "created_at":"1469602217"
+            }
+        ]
+
+## 为订单删除一个投保人 [DELETE]
+
++ Parameters
+    + order_id (number) -订单id
+    + insurance_beneficiary_id (number) -投保人id
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 204
 
 # 开放api:地区 [/v1/region]
 
