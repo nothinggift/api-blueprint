@@ -1428,6 +1428,14 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 # 用户订单 [/v1/orders]
 
+可使用的expand列表
+
++ `service` 地导服务
++ `buyer` 买家信息
++ `seller` 卖家信息
++ `serviceType` 服务类型
++ `serviceScenic` 服务景点
+
 用户订单状态列表，不定时增加
 
 + `100` 用户创建完成，尚未设置保险
@@ -1470,21 +1478,21 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 ## 创建订单 [POST]
 
-+ Attributes
-    + service_id (number) -服务id
-    + inception (string) -出发地code，6位数字
-    + need_insurance (number) -是否需要保险（1是，0否）
-    + insurance_id (number) -保险id，如需要保险则必填
-    + begin_date:`2016-05-24` (string) -服务开始日期
-    + end_date:`2016-05-25` (string) -服务结束日期
-    + `number_of_adults` (number) -成人人数
-    + `number_of_children` (number) -儿童人数
-
 + Request
 
     + Headers
         
             Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
+    + Attributes
+        + service_id (number) -服务id
+        + inception (string) -出发地code，6位数字
+        + need_insurance (number) -是否需要保险（1是，0否）
+        + insurance_id (number) -保险id，如需要保险则必填
+        + begin_date:`2016-05-24` (string) -服务开始日期
+        + end_date:`2016-05-25` (string) -服务结束日期
+        + `number_of_adults` (number) -成人人数
+        + `number_of_children` (number) -儿童人数
 
 + Response 201
 
@@ -2056,10 +2064,10 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
               }
             ]
             
-## 根据id获取一个景区 [GET /v1/scenics/{id}]
+## 根据id获取一个景区 [GET /v1/scenics/{scenic_id}]
 
 + Parameters
-    + id (optional,number) ... 景区id
+    + scenic_id (number) ... 景区id
     
 + Response 200 (application/json)
 
