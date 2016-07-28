@@ -1663,6 +1663,11 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 # 订单投保人 [/v1/order-to-insurances{?order_id,insurance_beneficiary_id}]
 
+可使用的expand列表
+
++ `order` 订单信息
++ `insuranceBeneficiary` 投保人信息
+
 + Attributes
     + order_id (number) -订单id
     + insurance_beneficiary_id (number) -投保人id
