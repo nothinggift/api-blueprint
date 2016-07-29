@@ -1476,6 +1476,44 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
     + updated_at (number) -更新时间
     + need_insurance (number) -是否需要保险（1是，0否）
 
+## 获取用户订单列表 [GET /v1/orders{?type}]
+
++ Parameters
+    + type:buyer (string) -类型（buyer:买家;seller:卖家）
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 200
+
+        [
+          {
+            "order_id": "14602886086397918",
+            "service_id": "630",
+            "buyer_id": 6,
+            "seller_id": 664,
+            "version": 1,
+            "title": "Prof.",
+            "service_region": "130100",
+            "price": 410,
+            "status": 100,
+            "refund_status": 0,
+            "is_deleted": 0,
+            "need_insurance": "1",
+            "begin_date": "2016-07-27",
+            "end_date": "2016-07-27",
+            "number_of_adults": "2",
+            "number_of_children": 0,
+            "total_price": 1,
+            "created_at": 1469528026,
+            "updated_at": 1469528026
+          }
+        ]
+
+
 ## 创建订单 [POST]
 
 + Attributes
