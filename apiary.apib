@@ -1563,6 +1563,23 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
           "updated_at": 1469528026
         }
 
+
+## 订单支付 [GET /v1/orsers/pay/{order_id}]
+
++ Parameters
+    + order_id (string) - 订单id
+    
++ Request
+
+    + Headers
+        
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+            
++ Response 200
+    
+     返回加密的支付用字符串
+
+
 ## 订单流程处理  [PUT /v1/orders/{order_id}]
 
 订单在创建后，可以用使用流程处理参数来更改订单状态，例如：
