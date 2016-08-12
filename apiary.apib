@@ -2623,3 +2623,38 @@ registration_id为必填项，其他都会可选项。
 ## 获取保险列表  [GET]
 
 + Response 200 (application/json)
+
+# 开放api:检查更新 [/v1/check-update{?type,version}]
+
++ Attributes
+    + id (number) -id
+    + version:`1.01.58` (string) -版本号
+    + system_type (string) -系统类型(android|ios)
+    + change_log (string) -更新说明
+    + type (string) -更新类型（normal|important|required)
+    + download_url (string) -下载链接，安卓系统下该链接为下载地址的uri，ios系统下为app store地址
+    + created_at (number) -创建时间
+    + updated_at (number) -更新时间
+
+## 获取最新版本信息  [GET]
+
++ Parameters
+    + type (string) -更新类型（normal|important|required)
+    + version (string) -当前app的版本号
+
++ Response 200 (application/json)
+
+        [] //空数组代表没有新的更新
+
++ Response 200 (application/json)
+  
+        {
+            "id":"1",
+            "version":"1.0",
+            "system_type":"android",
+            "change_log":"更新说明",
+            "type":"normal",
+            "download_url":"/applications/f92834ac-875a-4eb3-b683-80f2c2fbeccc.apk",
+            "created_at":"1470999629",
+            "updated_at":"1470999629"
+        }
