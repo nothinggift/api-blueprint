@@ -2626,6 +2626,14 @@ registration_id为必填项，其他都会可选项。
 
 # 开放api:检查更新 [/v1/check-update{?type,version}]
 
+用户每次打开app时，都需要执行更新检查 ，检测到更新时给予提示。
+
+不同的更新类型(type),使用不同的更新策略：
+
++ `normal` 普通更新，当用户选择暂不更新时，不再进行任何提示。
++ `important` 重大更新，当用户选择暂不更新时，当天打开app不再进行提示。
++ `required` 必要更新，不更新应用，就不能继续使用。
+
 + Attributes
     + id (number) -id
     + version:`1.01.58` (string) -版本号
