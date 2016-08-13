@@ -2624,7 +2624,7 @@ registration_id为必填项，其他都会可选项。
 
 + Response 200 (application/json)
 
-# 开放api:检查更新 [/v1/check-update{?type,version}]
+# 开放api:检查更新 [/v1/check-update{?system_type,version}]
 
 用户每次打开app时，都需要执行更新检查 ，检测到更新时给予提示。
 
@@ -2647,7 +2647,7 @@ registration_id为必填项，其他都会可选项。
 ## 获取最新版本信息  [GET]
 
 + Parameters
-    + type (string) -更新类型（normal|important|required)
+    + system_type (string) -系统类型(android|ios)
     + version (string) -当前app的版本号
 
 + Response 200 (application/json)
