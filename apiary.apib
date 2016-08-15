@@ -134,26 +134,48 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 当接收到出错信息时，应定位到表单的出错字段位置，并显示相关错误信息。
 
-## 应用内url路由规则：
+## 应用内url路由规则
 
 应用监听 `hengxing://` 协议的url，通过下面的路由规则跳转到特定页面
 
 通用资源规则
 
-`users/{user_id}` 例: **hengxing://users/1** id为1的用户页面
-`services/{service_id}` 例: **hengxing://services/1** 服务id为1的服务详情页
-`services/{service_id}/locked-service-date` 例: **hengxing://services/1/locked-service-date** 服务id为1的日程页面，服务所有者为管理页面
-`orders/{order_id}` 例: **hengxing://orders/1400148514587556** 订单id为1400148514587556的订单详情页，只有订单所有者或服务提供者可以查看
-`collects/{user_id}` 例: **hengxing://collects/1** 用户id为1的收藏列表
-`scenics/{scenic_id}` 例: **hengxing://scenics/1** 景区id为1的景区详情页
-`articles/{atricle_id}` 例: **hengxing://articles/1** 文章id为1的文章详情页
-`search/services/region_code/{region_code}` 例: **hengxing:///search/services/region_id/110000** 地区code为110000的服务列表
-`search/services/scenic_id/{scenic_id}` 例: **hengxing:///search/services/scenic_id/1** 景区id为1的服务列表
++ `users/{user_id}`
+    + 例: **hengxing://users/1** 
+    + id为1的用户页面
++ `services/{service_id}`
+    + 例: **hengxing://services/1** 
+    + 服务id为1的服务详情页
++ `services/{service_id}/locked-service-date`
+    + 例: **hengxing://services/1/locked-service-date** 
+    + 服务id为1的日程页面，服务所有者为管理页面
++ `orders/{order_id}`
+    + 例: **hengxing://orders/1400148514587556** 
+    + 订单id为1400148514587556的订单详情页，只有订单所有者或服务提供者可以查看
++ `collects/{user_id}`
+    + 例: **hengxing://collects/1** 
+    + 用户id为1的收藏列表
++ `scenics/{scenic_id}`
+    + 例: **hengxing://scenics/1**
+    + 景区id为1的景区详情页
++ `articles/{atricle_id}`
+    + 例: **hengxing://articles/1**
+    + 文章id为1的文章详情页
++ `search/services/region_code/{region_code}`
+    + 例: **hengxing:///search/services/region_id/110000** 
+    + 地区code为110000的服务列表
++ `search/services/scenic_id/{scenic_id}`
+    + 例: **hengxing:///search/services/scenic_id/1**
+    + 景区id为1的服务列表
 
 特定功能页面
 
-`orders/{order_id}/confirm` 例: **hengxing://orders/1400148514587556/confirm** 订单id为1400148514587556的服务提供方确认页面
-`service-providers/{user_id}` 例: **hengxing://service-providers/1** 用户id为1的服务提供者身份审核页面
++ `orders/{order_id}/confirm`
+    + 例: **hengxing://orders/1400148514587556/confirm** 
+    + 订单id为1400148514587556的服务提供方确认页面
++ `service-providers/{user_id}`
+    + 例: **hengxing://service-providers/1**
+    + 用户id为1的服务提供者身份审核页面
 
 ## 用户授权 [/oauth]
 
