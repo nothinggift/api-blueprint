@@ -138,6 +138,15 @@ token有两种传递方式，一种是使用GET或POST直接传递，第二种�
 
 应用监听 `hengxing://` 协议的url，通过下面的路由规则跳转到特定页面
 
+通知推送时，在`extras`参数中附带参数 `url`，当点击该通知时，根据该参数跳转到对应页面。例：
+
+```
+extras:{
+    url:'hengxing://users/1'
+}
+```
+
+
 通用资源规则
 
 + `users/{user_id}`
