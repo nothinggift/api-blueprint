@@ -1724,6 +1724,88 @@ type类型目前只有text,image两种，后期可能增加，app端对于未定
           "updated_at": 1469528026
         }
 
+# 评论管理 [/v1/comments{?content,order_id,service_id}]
+
++ Attributes
+    + id:5 (number) -id
+    + score (number) -评分（0-5）
+    + content (string) -评价内容
+    + order_id (number) -订单id
+    + created_at (number) -创建时间
+    + rate (number) -点赞数(可为负数)
+    + user_id (number) -评论人id
+    + service_id (number) -服务id
+
+## 添加评论 [POST]
+
++ Attributes
+    + score (number) -评分（0-5）
+    + content (string) -评价内容
+    + order_id (number) -订单id
+
++ Request
+    + Headers
+            Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
+
++ Response 201
+
+        {
+            "id":"1",
+            "score":"3",
+            "content":"评价内容",
+            "order_id":"14241687619687461",
+            "created_at":"1469602217",
+            "rate":"0",
+            "user_id":"7928",
+            "service_id":"13"
+        }
+
+## 评价列表 [GET]
+
+**该api为开放接口，无需身份验证**
+
++ Parameters
+    + score (optional,number) -评分（0-5）
+    + content (optional,string) -评价内容
+    + order_id (optional,number) -订单id
+    + service_id (optional,number) -服务id
+
++ Response 200
+
+        [
+            {
+                "id":"1",
+                "score":"3",
+                "content":"评价内容",
+                "order_id":"14241687619687461",
+                "created_at":"1469602217",
+                "rate":"0",
+                "user_id":"7928",
+                "service_id":"13"
+            }
+        ]
+
+## 根据id查看一个评价 [GET /v1/comments/{id}]
+
+**该api为开放接口，无需身份验证**
+
++ Parameters
+    + id (number) -评价id
+
++ Response 200
+
+        {
+            "id":"1",
+            "score":"3",
+            "content":"评价内容",
+            "order_id":"14241687619687461",
+            "created_at":"1469602217",
+            "rate":"0",
+            "user_id":"7928",
+            "service_id":"13"
+        }
+
+
 # 投保人管理  [/v1/insurance-beneficiaries]
 
 投保人是订单投保时的游客信息，是办理保险业务必需的用户数据。
