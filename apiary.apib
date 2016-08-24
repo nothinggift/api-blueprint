@@ -1724,7 +1724,7 @@ type类型目前只有text,image两种，后期可能增加，app端对于未定
           "updated_at": 1469528026
         }
 
-# 评论管理 [/v1/comments{?content,order_id,service_id}]
+# 评论管理 [/v1/comments{?content,order_id,service_id,score}]
 
 + Attributes
     + id:5 (number) -id
@@ -1744,7 +1744,9 @@ type类型目前只有text,image两种，后期可能增加，app端对于未定
     + order_id (number) -订单id
 
 + Request
+
     + Headers
+    
             Authorization: Bearer f64319dc8bec5bd0d750dbc47653c706a64b7178
 
 + Response 201
