@@ -2698,6 +2698,7 @@ type类型目前只有text,image两种，后期可能增加，app端对于未定
     + device_model (string) -设备名称，如：iphone5
     + device_id (string) -由apicloud生成的设备标识
     + system_version (string) -系统版本号
+    + app_version (string) -app版本号
     + created_at (number) -创建时间
     + updated_at (number) -更新时间
 
@@ -2705,7 +2706,7 @@ type类型目前只有text,image两种，后期可能增加，app端对于未定
 
 当带有身份信息使用该接口时，会记录用户id，否则会记为匿名。
 
-registration_id为必填项，其他都会可选项。
+registration_id为必填项，其他都为可选项。
 
 + Request (application/json)
   + Attributes
@@ -2715,6 +2716,7 @@ registration_id为必填项，其他都会可选项。
       + device_model (optional,string) -设备名称，如：iphone5
       + device_id (optional,string) -由apicloud生成的设备标识
       + system_version (optional,string) -系统版本号
+      + app_version (optional,string) -app版本号
 
 + Response 200 (application/json)
 
